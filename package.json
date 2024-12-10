@@ -15,7 +15,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://<your-username>.github.io/<your-repo-name>",
+  "homepage": "https://github.com/synthiab1997/fed2-project-auction-site.git",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.1",
     "@fortawesome/free-solid-svg-icons": "^6.7.1",
