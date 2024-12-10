@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auction Home Page</title>
+    <script type="module" src="/src/app.js"></script>
+    <link rel="stylesheet" href="/src/css/style.css" />
+    <img src="/images/" alt="Noroff logo" class="img" />
+  </head>
+  <body>
+    <h1>Profile</h1>
+    <main>
+      <form name="updateProfile">
+        <label for="avatar-url">Avatar URL</label>
+        <input type="url" name="avatar-url" placeholder="Insert image URL" />
+        <label for="avatar-alt">Avatar alt</label>
+        <input type="text" name="avatar-alt" placeholder="Alt text for your image" />
+        <label for="banner-url">Banner URL</label>
+        <input type="url" name="banner-url" placeholder="Insert image URL" />
+        <label for="banner-alt">Banner alt</label>
+        <input type="text" name="banner-alt" placeholder="Alt text for your image" />
+        <label for="bio">Bio</label>
+        <textarea name="bio" placeholder="Write a bio about yourself"></textarea>
+        <br />
+        <br />
+        <button type="submit">Save Profile</button>
+      </form>
+      <div id="profile-container"></div>
+      <div id="own-posts-container">My posts</div>
+    </main>
+  </body>
+</html>

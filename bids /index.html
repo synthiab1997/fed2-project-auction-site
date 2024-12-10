@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Listings</title>
+    <meta name="description" content="Here you see all the listings">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/src/css/style.css">
+    <script type="module" src="/src/js/app.js"></script>
+    <script type="module" src="/src/js/ui/global/logout.js"></script>
+    <script type="module" src="/src/js/ui/listing/view.js"></script>
+    <script type="module" src="/src/js/ui/home/home.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+  <header class="navbar navbar-expand-lg navbar-light bg-dark py-3">
+    <nav class="container">
+      <div><a href="/index.html" class="navbar-brand d-flex align-items-center">
+        <img src="/images/logo.png" alt="Auction Logo" id="auction-logo" class="me-2" />
+        </a>
+      </div>
+      <div class="ms-auto d-flex align-items-center">
+        <a class="nav-link" href="/index.html">Home</a>
+        <a class="nav-link" href="/profile/index.html">My Profile</a>
+        <a href="/listing/create/index.html" class="nav-link" id="createListingForm">Create Listing</a>
+        <a class="nav-link" href="/auth/login/index.html" id="loginButton">Login</a>
+        <a class="nav-link" href="/auth/register/index.html" id="registerButton">Register</a>
+        <button id="logoutButton" class="btn btn-outline-primary ms-2">Logout</button>
+      </div>
+    </nav>
+  </header>
+
+    <!-- Main Content -->
+    <div class="container my-5 bg-dark">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0">All Listings</h1>
+            <!-- Pagination Controls -->
+            <div>
+                <button data-page="1" class="btn btn-outline-danger">Page 1</button>
+                <button data-page="2" class="btn btn-outline-danger">Page 2</button>
+                <button data-limit="12" class="btn btn-outline-danger">All Listings</button>
+                
+            </div>
+        </div>
+
+        <!-- Listings List -->
+        <div id="listingList" class="row">
+            <!-- Dynamically loaded post cards will appear here -->
+        </div>
+    </div>
+
+    
+</body>
+</html>

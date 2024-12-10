@@ -1,0 +1,32 @@
+{
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.2.0",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "tailwindcss": "^3.4.15"
+  },
+  "scripts": {
+    "postcss-build": "postcss src/styles.css -o dist/styles.css",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "format": "prettier --write .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "homepage": "https://<your-username>.github.io/<your-repo-name>",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.1",
+    "@fortawesome/free-solid-svg-icons": "^6.7.1",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@tanstack/react-query": "^5.62.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.54.0",
+    "react-icons": "^5.4.0",
+    "react-router-dom": "^7.0.2",
+    "vite": "^6.0.1",
+    "yup": "^1.5.0"
+  }
+}
