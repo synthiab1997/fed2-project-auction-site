@@ -1,10 +1,15 @@
 {
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.2",
     "gh-pages": "^6.2.0",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
-    "tailwindcss": "^3.4.15"
+    "tailwindcss": "^3.4.15",
+    "type": "module"
   },
   "scripts": {
     "postcss-build": "postcss src/styles.css -o dist/styles.css",
@@ -13,9 +18,12 @@
     "serve": "vite preview",
     "format": "prettier --write .",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+   
   },
-  "homepage": "https://github.com/synthiab1997/fed2-project-auction-site.git",
+  "homepage": "https://synthiab1997.github.io/fed2-project-auction-site/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.1",
     "@fortawesome/free-solid-svg-icons": "^6.7.1",
@@ -28,5 +36,7 @@
     "react-router-dom": "^7.0.2",
     "vite": "^6.0.1",
     "yup": "^1.5.0"
+   
+
   }
 }

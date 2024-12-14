@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listings</title>
+  <link rel="stylesheet" href="/src/css/styles.css">
+  <link rel="stylesheet" href="/src/css/style.css">
+  <script type="module" src="/src/js/api/listings/create.js" defer></script>
+  <script type="module" src="/src/js/api/global/logout.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-blue-800 text-white shadow-md">
+    <nav class="container mx-auto flex items-center justify-between py-4">
+      <!-- Spacer for Center Alignment -->
+      <div class="flex-1"></div>
+      
+      <!-- Centered Page Title -->
+      <div class="flex items-center justify-center flex-1">
+        <h1
+          class="text-gold font-meie-script text-3xl md:text-4xl hover:text-white transition-colors duration-300"
+        >
+          The Golden Market
+        </h1>
+      </div>
+  
+      <!-- Right-Aligned Links -->
+      <div class="flex items-center justify-end flex-1 space-x-4">
+        <a href="/profile/index.html" class="hover:underline">My Profile</a>
+        <a href="/index.html" class="hover:underline">Logout</a>
+      </div>
+    </nav>
+  </header>
+  
+
+  <!-- Main Content -->
+  <main class="container mx-auto my-10">
+    <!-- Page Heading -->
+    <section class="text-center mb-10">
+      <h2 class="text-4xl font-bold text-blue-800">Auction Listings</h2>
+      <p class="text-lg text-gray-600 mt-2">Explore the latest items for bidding</p>
+    </section>
+
+    <!-- Create Listing Button -->
+    <section class="text-right mb-6">
+      <button
+        id="toggle-form-btn"
+        class="button-primary inline-block"
+      >
+        <i class="fas fa-plus-circle"></i> Create New Listing
+      </button>
+    </section>
+
+    <section id="create-listing-form" class="hidden bg-white p-8 rounded shadow-md w-full max-w-lg mx-auto mb-8">
+      
+      <form id="listing-form">
+        <div class="mb-4">
+          <label for="title" class="block text-gray-700">Title</label>
+          <input
+            id="title"
+            type="text"
+            name="title"
+            required
+            class="w-full p-2 border rounded focus:outline-blue-500"
+          />
+        </div>
+    
+        <div class="mb-4">
+          <label for="description" class="block text-gray-700">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            required
+            class="w-full p-2 border rounded focus:outline-blue-500"
+          ></textarea>
+        </div>
+    
+        <div class="mb-4">
+          <label for="media" class="block text-gray-700">Media</label>
+          <input
+            id="media"
+            type="file"
+            accept="image/*"
+            multiple
+            class="w-full p-2 border rounded focus:outline-blue-500"
+          />
+        </div>
+    
+        <div class="mb-4">
+          <label for="deadline" class="block text-gray-700">Deadline</label>
+          <input
+            id="deadline"
+            type="date"
+            name="deadline"
+            required
+            class="w-full p-2 border rounded focus:outline-blue-500"
+          />
+        </div>
+    
+        <div class="flex space-x-4">
+          <button type="submit" class="button-primary flex-1">Create Listing</button>
+          <button type="button" id="cancel-form-btn" class="button-secondary flex-1">Cancel</button>
+        </div>
+      </form>
+    </section>
+    
+    
+
+    <!-- Listings Grid -->
+    <section class="mx-auto w-3/4 max-w-screen-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="listings-grid">
+      <!-- Example Card -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img
+        src="/images/scuplture img.jpeg"
+        alt="Sculpture Image"
+        class="w-3/5 mx-auto h-40 object-cover rounded"
+      />
+        <div class="p-4">
+          <h3 class="text-lg font-bold text-blue-800">Blue Sculpture</h3>
+          <p class="text-gray-600 text-sm mt-1">
+            A handcrafted blue sculpture with exquisite detail.
+          </p>
+          <p class="text-gray-600 text-sm mt-1">Bids: 10</p>
+          <div class="mt-4 flex justify-between items-center">
+            <button class="button-primary flex-1 mr-2">Place Bid</button>
+            <div class="flex flex-1 space-x-2">
+              <button class="button-secondary flex-1">Edit</button>
+              <button class="button-danger flex-1">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Repeat this card dynamically -->  
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img
+        src="/images/bracelet.jpeg"
+        alt="bracelet Image"
+        class="w-3/5 mx-auto h-40 object-cover rounded"
+      />
+        <div class="p-4">
+          <h3 class="text-lg font-bold text-blue-800">bracelet</h3>
+          <p class="text-gray-600 text-sm mt-1">
+            A handcrafted blue sculpture with exquisite detail.
+          </p>
+          <p class="text-gray-600 text-sm mt-1">Bids: 10</p>
+          <div class="mt-4 flex justify-between items-center">
+            <button class="button-primary">Place Bid</button>
+            <div class="flex space-x-2">
+              <button class="button-secondary">Edit</button>
+              <button class="button-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img
+        src="/images/painting img.jpeg"
+        alt="woman painting Image"
+        class="w-3/5 mx-auto h-40 object-cover rounded"
+      />
+        <div class="p-4">
+          <h3 class="text-lg font-bold text-blue-800">painting</h3>
+          <p class="text-gray-600 text-sm mt-1">
+            A handcrafted blue sculpture with exquisite detail.
+          </p>
+          <p class="text-gray-600 text-sm mt-1">Bids: 10</p>
+          <div class="mt-4 flex justify-between items-center">
+            <button class="button-primary">Place Bid</button>
+            <div class="flex space-x-2">
+              <button class="button-secondary">Edit</button>
+              <button class="button-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleButton = document.getElementById("toggle-form-btn");
+      const createForm = document.getElementById("create-listing-form");
+
+      toggleButton.addEventListener("click", () => {
+        createForm.classList.toggle("hidden");
+      });
+    });
+  </script>
+  
+
+  <!-- Footer -->
+  <footer class="bg-burgundy text-white py-6 mt-10">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 The Golden Market. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

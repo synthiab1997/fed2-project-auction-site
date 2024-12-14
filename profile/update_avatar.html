@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Avatar</title>
+  <link rel="stylesheet" href="/src/css/styles.css">
+  <link rel="stylesheet" href="/src/css/style.css">
+  <script type="module" src="/src/js/api/profile/avatar.js" defer></script>
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-blue-800 text-white shadow-md">
+    <nav class="container mx-auto flex justify-between items-center py-4">
+      <a href="/" class="flex items-center">
+        <img src="/images/logo.png" alt="Auction Logo" class="h-10">
+      </a>
+      <div class="space-x-4">
+        <a href="/profile/index.html" class="hover:underline">My Profile</a>
+        <a href="/auth/logout/" class="hover:underline">Logout</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto my-10">
+    <div class="bg-white p-8 rounded-lg shadow-md max-w-xl mx-auto">
+      <h2 class="text-2xl font-bold text-center text-blue-800 mb-6">Update Avatar</h2>
+      
+      <!-- Current Avatar -->
+      <div class="flex flex-col items-center mb-6">
+        <img
+          src="/images/default-avatar.png"
+          alt="Current Avatar"
+          id="avatar-preview"
+          class="rounded-full h-40 w-40 border-2 border-blue-800 mb-4"
+        />
+        <button
+          id="choose-avatar-btn"
+          class="bg-yellow-500 text-blue-800 px-4 py-2 rounded hover:bg-yellow-600"
+        >
+          Choose New Avatar
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal for Selecting Avatar -->
+  <div id="avatar-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
+      <h3 class="text-lg font-bold text-center text-blue-800 mb-4">Select an Avatar</h3>
+      <div class="grid grid-cols-3 gap-4">
+        <!-- Example Avatars -->
+        <img
+          src="/images/avatar1.png"
+          alt="Avatar 1"
+          class="cursor-pointer rounded-full h-24 w-24 border-2 hover:border-blue-800"
+          data-avatar="/images/avatar1.png"
+        />
+        <img
+          src="/images/avatar2.png"
+          alt="Avatar 2"
+          class="cursor-pointer rounded-full h-24 w-24 border-2 hover:border-blue-800"
+          data-avatar="/images/avatar2.png"
+        />
+        <img
+          src="/images/avatar3.png"
+          alt="Avatar 3"
+          class="cursor-pointer rounded-full h-24 w-24 border-2 hover:border-blue-800"
+          data-avatar="/images/avatar3.png"
+        />
+        <!-- Add more avatars as needed -->
+      </div>
+      <div class="text-center mt-4">
+        <button
+          id="close-modal-btn"
+          class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-burgundy text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 The Golden Market. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

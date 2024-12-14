@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to The Golden Market - Auction</title>
+  <link rel="stylesheet" href="/src/css/styles.css">
+  <link rel="stylesheet" href="/src/css/style.css">
+  <script type="module" src="/src/js/api/home.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+  
+  <!-- Header Section -->
+  <header class="bg-blue-800 text-white shadow-md">
+    <nav class="container mx-auto flex items-center justify-between py-4">
+      <!-- Logo Section -->
+      <div class="flex items-center space-x-3">
+        <img src="/images/treasure_17947595.png" alt="Treasure Chest Logo" class="h-10 w-10">
+        <h1 class="text-gold font-meie-script text-3xl md:text-4xl hover:text-white transition-colors duration-300">
+          The Golden Market
+        </h1>
+      </div>
+      <!-- Navigation Links -->
+      <div class="flex items-center space-x-4">
+        <a href="/auth/login/index.html" class="button-secondary">Login</a>
+        <a href="/auth/register/index.html" class="button-tertiary">Register</a>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Banner Section -->
+  <section class="banner relative bg-cover bg-center text-white" style="background-image: url('/images/xmas%20img%20auction.jpeg'); height: 20vh;">
+    <div class="banner-overlay absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="container mx-auto relative z-10 flex flex-col md:flex-row items-center h-full">
+      <!-- Left Content: Text -->
+      <div class="text-container md:w-1/2 text-center md:text-left px-6">
+        <h1 class="text-2xl md:text-3xl font-bold mb-2">The Christmas Jewellery Auction</h1>
+        <p class="text-sm md:text-lg mb-4">Themed auction, closes on 16 December.</p>
+        <a href="#" class="button-primary px-4 py-2">Explore the catalogue</a>
+      </div>
+      <!-- Right Content: Image -->
+      <div class="image-container md:w-1/2 hidden md:block">
+        <img src="/images/banner-image.jpg" alt="Jewellery Auction" class="w-full h-auto rounded-lg shadow-md">
+      </div>
+    </div>
+  </section>
+  
+  <!-- Listings Section -->
+  <section class="listings py-10">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center text-blue-800 mb-6">Latest Listings</h2>
+      <div id="listings-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Example Listing Card -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <img src="/images/example-listing.jpg" alt="Listing Image" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-blue-800">Antique Vase</h3>
+            <p class="text-gray-600">Starting Bid: <span class="text-yellow-400">50 credits</span></p>
+            <a href="#" class="block mt-4 text-center bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-700">View Listing</a>
+          </div>
+        </div>
+        <!-- Additional listing cards dynamically populated -->
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pagination Section -->
+  <section class="pagination py-6">
+    <div class="container mx-auto">
+      <div id="pagination" class="flex justify-center space-x-4">
+        <button class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">1</button>
+        <button class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">2</button>
+        <button class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">3</button>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer Section -->
+  <footer class="bg-burgundy text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 The Golden Market. All rights reserved.</p>
+    </div>
+  </footer>
+  
+</body>
+</html>

@@ -1,22 +1,22 @@
-import { headers } from "./js/api/headers";
-import { API_BASE } from "./js/api/constants";
+import { headers } from '../api/headers'
+import { API_BASE } from '../api/constants'
 
-const listingsContainer = document.getElementById("listings");
+const listingsContainer = document.getElementById('listings')
 
 // Fetching listing from API
 async function loadListings() {
   try {
     const response = await fetch(`${API_BASE}/auction/listings`, {
-      method: "GET",
+      method: 'GET',
       headers: headers(),
-    });
+    })
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch listings: ${response.statusText}`);
+      throw new Error(`Failed to fetch listings: ${response.statusText}`)
     }
 
-    const data = await response.json();
-    console.log("Data fetched from API:", data);
+    const data = await response.json()
+    console.log('Data fetched from API:', data)
 
     // Check listings
     if (data && data.data && data.data.length > 0) {
@@ -27,11 +27,11 @@ async function loadListings() {
           const mediaUrl =
             item.media && item.media[0]
               ? item.media[0].url
-              : "default-image.jpg"; // Fallback image
+              : 'default-image.jpg' // Fallback image
           const mediaAlt =
             item.media && item.media[0]
               ? item.media[0].alt
-              : "No image available";
+              : 'No image available'
 
           return `
                     <div class="listing-item">
@@ -39,26 +39,26 @@ async function loadListings() {
                         <div class="listing-details">
                             <h3 class="listing-title">${item.title}</h3>
                             <p class="listing-description">${item.description}</p>
-                            <p class="listing-tags">Tags: ${item.tags.join(", ")}</p>
+                            <p class="listing-tags">Tags: ${item.tags.join(', ')}</p>
                             <p class="listing-end-date">Ends At: ${new Date(item.endsAt).toLocaleString()}</p>
                             <p class="listing-bids">Bids: ${item._count.bids}</p>
                         </div>
                     </div>
-                `;
+                `
         })
-        .join("");
+        .join('')
 
       // Inject HTML into the listings container
-      listingsContainer.innerHTML = listingsHtml;
+      listingsContainer.innerHTML = listingsHtml
     } else {
-      listingsContainer.innerHTML = "<p>No listings available.</p>";
+      listingsContainer.innerHTML = '<p>No listings available.</p>'
     }
   } catch (error) {
-    console.error("Error loading listings:", error);
+    console.error('Error loading listings:', error)
     listingsContainer.innerHTML =
-      "<p>Failed to load listings. Please try again later.</p>";
+      '<p>Failed to load listings. Please try again later.</p>'
   }
 }
 
 // Load the listings when the page is loaded
-document.addEventListener("DOMContentLoaded", loadListings);
+document.addEventListener('DOMContentLoaded', loadListings)

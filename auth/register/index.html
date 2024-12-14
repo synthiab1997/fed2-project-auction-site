@@ -1,21 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="/src/css/styles.css">
+  <link rel="stylesheet" href="/src/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script type="module" src="/src/js/api/auth/register.js"></script>
+</head>
+<body class="bg-gray-100">
+ 
+  <!-- Main Content -->
+  <main class="relative min-h-screen flex items-center justify-center">
+    <!-- Blurry Background -->
+    <div class="absolute inset-0 bg-blue-700 bg-opacity-50 backdrop-blur-md z-0"></div>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>auction-register</title>
-    <script type="module" src="/src/js/api/auth/register.js"></script>
-    <link rel="stylesheet" href="/src/css/style.css" />
-    <img src="/images/treasure-chest.png" alt="Noroff logo" class="img" />
-  </head>
+    <!-- Form Section -->
+    <div class="form-container bg-white p-6 rounded shadow-md z-10">
+      <!-- Close and Back Controls -->
+      <div class="flex justify-between items-center mb-4">
+        <!-- Back Arrow -->
+        <a href="/auth/login/" class="text-blue-600 hover:text-blue-800 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </a>
+        <!-- Close Button -->
+        <span onclick="redirectToHomepage()" class="text-gray-600 hover:text-red-600 cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </span>
+      </div>
 
-  <body>
-    <h1>Register</h1>
+      <form id="registerForm" class="h-full flex flex-col space-y-4">
+        <h2 class="text-xl font-bold text-center text-gray-700 mb-4">Create an Account</h2>
 
-    <form name="register">
-      <div>
-        <label for="name">Name</label>
+        <!-- Name Field -->
+        <label for="name" class="block text-gray-700 mb-2">Name</label>
         <input
           id="name"
           type="text"
@@ -24,11 +47,11 @@
           maxlength="20"
           pattern="^[\w]+$"
           title="Please enter a username using only letters and numbers"
+          class="w-full p-2 border rounded focus:outline-blue-500"
         />
-      </div>
-      <br />
-      <div>
-        <label for="email">Email</label>
+
+        <!-- Email Field -->
+        <label for="email" class="block text-gray-700 mb-2">Email</label>
         <input
           id="email"
           type="email"
@@ -36,25 +59,52 @@
           required
           pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
           title="Please enter a valid noroff.no or stud.noroff.no address"
+          class="w-full p-2 border rounded focus:outline-blue-500"
         />
-      </div>
-      <br />
-      <div>
-        <label for="password">Password</label>
+
+        <!-- Password Field -->
+        <label for="password" class="block text-gray-700 mb-2">Password</label>
         <input
           type="password"
           name="password"
           id="password"
           required
           minlength="8"
+          class="w-full p-2 border rounded focus:outline-blue-500"
         />
+
+        <!-- Submit Button -->
+        <button type="submit" class="button-primary">
+          Register
+        </button>
+
+        <!-- Link to Login -->
+        <div class="flex justify-center mt-6">
+          <span class="text-gray-700">
+            Already have an account?<a href="/auth/login/index.html" class="text-blue-600 hover:underline">Login</a>
+          </span>
+        </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-burgundy text-white py-6">
+    <div class="container mx-auto text-center">
+      <!-- Company Info -->
+      <p class="text-lg font-semibold mb-4">&copy; 2024 Auction Site. All rights reserved.</p>
+  
+      <!-- Links Section -->
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="/terms.html" class="hover:text-yellow-400">Terms of Service</a>
+        <span class="text-white">|</span>
+        <a href="/privacy.html" class="hover:text-yellow-400">Privacy Policy</a>
       </div>
+    </div>
+  </footer>
 
-      <div id="errorMessages" style="color: red"></div>
-      <div id="successMessages" style="color: green"></div>
-
-      <a href="/auth/login/">Login</a>
-      <button>Register</button>
-    </form>
-  </body>
+  <script>
+    function redirectToHomepage() {
+      window.location.href = "/index.html"; // Update the path to match your homepage URL
+    }
+  </script>
+</body>
 </html>

@@ -1,0 +1,560 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+    &:before,
+    &:after,
+    & {
+        box-sizing: inherit;
+    }
+}
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    background-color: #F5F5F5; /* Soft Gray */
+    color: #1A237E; /* Deep Navy Blue */
+}
+
+/* Header and Footer */
+header {
+    background-color: #1A237E; /* Deep Navy Blue */
+    color: #FFFFFF; /* White */
+}
+
+header a {
+    color: #FFFFFF;
+}
+
+header a:hover {
+    color: #FFC107; /* Gold Accent */
+}
+
+/* Customize the treasure chest icon container */
+.icon-container {
+    background-color: #FFC107; /* Gold */
+    color: #1A237E; /* Navy Blue */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.25rem; /* Slightly rounded corners */
+    width: 3rem; /* Fixed size */
+    height: 3rem; /* Fixed size */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+  
+/* Font styling for the text */
+.logo-text {
+    color: #FFFFFF; /* White text */
+    font-family: serif; /* Use a serif font */
+    font-weight: bold;
+}
+  
+/* Footer Styling */
+footer {
+    background-color: #800020; /* Burgundy background */
+    color: #ffffff; /* White text */
+    padding: 1.5rem 0; /* Vertical padding */
+}
+  
+footer .container {
+    max-width: 1200px; /* Restrict content width */
+    margin: 0 auto; /* Center the content */
+    text-align: center; /* Align content to the center */
+}
+  
+footer p {
+    margin: 0; /* Remove default margin */
+    line-height: 1.6; /* Improve readability */
+}
+  
+footer a {
+    color: inherit; /* Inherit text color (white) */
+    text-decoration: none; /* Remove underline by default */
+    transition: color 0.3s ease; /* Smooth hover transition */
+}
+  
+footer a:hover {
+    color: #ffd700; /* Change to gold on hover */
+}
+  
+footer .flex {
+    display: flex;
+    justify-content: center; /* Center the icons */
+    align-items: center; /* Align icons vertically */
+    gap: 1.5rem; /* Add space between icons */
+}
+  
+footer i {
+    font-size: 1.25rem; /* Increase icon size */
+}
+  
+  
+
+/* Form Styling */
+section {
+    background-color: #ffffff; /* White */
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+section h1 {
+    margin-bottom: 1.5rem;
+}
+
+/* Form Inputs */
+input {
+    border: 1px solid #e0e0e0; /* Light Gray */
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    width: 100%;
+}
+
+input:focus {
+    outline: 2px solid #1A237E; /* Deep Navy Blue */
+    border-color: #1A237E;
+}
+
+/* General Button Styles */
+.button-primary {
+    display: inline-block;
+    width: 100%;
+    background-color: #1A237E; /* Deep Navy Blue */
+    color: #FFFFFF; /* White */
+    padding: 0.5rem 1rem; /* Vertical and horizontal padding */
+    border-radius: 0.375rem; /* Rounded corners */
+    font-weight: bold; /* Bold text */
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+  
+.button-primary:hover {
+    background-color: #123456; /* Slightly darker navy blue */
+}
+  
+.button-primary:focus {
+    outline: 2px solid #1A237E; /* Focus outline color */
+    box-shadow: 0 0 5px 2px rgba(26, 35, 126, 0.5); /* Glow effect */
+}
+  
+.button-primary:active {
+    transform: scale(0.98); /* Slightly reduce size on click */
+}
+  
+/* Secondary Button */
+.button-secondary {
+    display: inline-block;
+    background-color: #FFC107; /* Gold */
+    color: #1A237E; /* Deep Navy Blue */
+    margin-top: 10px;
+    padding: 0.5rem 1rem; /* Vertical and horizontal padding */
+    border-radius: 0.375rem; /* Rounded corners */
+    font-weight: bold; /* Bold text */
+    text-align: center;
+    border: 2px solid #FFC107; /* Gold border */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+  
+.button-secondary:hover {
+    background-color: #E6B806; /* Darker Gold */
+    border-color: #E6B806; /* Darker Gold border */
+}
+  
+.button-secondary:focus {
+    outline: 2px solid #FFC107; /* Gold focus outline */
+    box-shadow: 0 0 5px 2px rgba(255, 193, 7, 0.5); /* Subtle glow effect */
+}
+  
+.button-secondary:active {
+    transform: scale(0.97); /* Slightly shrink button on click */
+}
+
+/* tertiary Button */
+.button-tertiary {
+    display: inline-block;
+    background-color: #FFC107; /* Gold */
+    color: white; /* white */
+    margin-top: 10px;
+    padding: 0.5rem 1rem; /* Vertical and horizontal padding */
+    border-radius: 0.375rem; /* Rounded corners */
+    font-weight: bold; /* Bold text */
+    text-align: center;
+    border: 2px solid #800020; /* Gold border */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+  
+.button-tertiary:hover {
+    background-color: #E6B806; /* Darker Gold */
+    border-color: #E6B806; /* Darker Gold border */
+    color: #1A237E;
+}
+  
+.button-tertiary:focus {
+    outline: 2px solid #FFC107; /* Gold focus outline */
+    box-shadow: 0 0 5px 2px rgba(255, 193, 7, 0.5); /* Subtle glow effect */
+}
+  
+.button-tertiary:active {
+    transform: scale(0.97); /* Slightly shrink button on click */
+}
+  
+
+/* Messages */
+#errorMessages {
+    color: #e3342f; /* Red */
+}
+
+#successMessages {
+    color: #38a169; /* Green */
+}
+
+/*link styling*/
+.text-center {
+    font-size: 1rem; /* Set font size for the whole line */
+    color: #4a4a4a; /* Gray color for the non-link text */
+}
+
+
+/* Styling for "New user?" text */
+.text-gray-700 {
+    font-size: 1rem; /* Adjust font size */
+    color: #4a4a4a; /* Gray color */
+    text-decoration: none;
+}
+  
+/* Styling for the link */
+.text-gray-700 a {
+    text-decoration: none; /* No underline by default */
+    margin-left: 0.5rem; /* Add spacing between "New user?" and the link */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+  
+.text-center a {
+    margin-left: 0.25rem; /* Small gap between text and link */
+    text-decoration: none; /* Remove underline by default */
+    transition: color 0.2s ease; /* Smooth hover transition */
+}
+
+.text-gray-600 {
+    text-decoration: none; /* No underline */
+    margin-left: 0.5rem;
+}
+  /*login/register page*/
+
+/* Blurry Background */
+main {
+    position: relative;
+}
+  
+main .absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(12, 35, 64, 0.7); /* Navy blue with opacity */
+    backdrop-filter: blur(10px); /* Blur effect */
+    z-index: 0; /* Ensure it's behind the form */
+}
+  
+/* Form Container */
+.form-container {
+    width: 50%; /* Reduced to 50% width */
+    height: 60%; /* Adjusted to 60% height */
+    background-color: #ffffff; /* White background */
+    border-radius: 0.5rem; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 2rem; /* Add more spacing inside */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 10; /* Ensure it appears above the background */
+}
+  
+/* Adjust the form spacing */
+.form-container form label {
+    margin-bottom: 0.5rem; /* Add space below labels */
+}
+  
+.form-container form input {
+    margin-bottom: 1rem; /* Add space below inputs */
+}
+  
+/* Back Arrow and Close Button */
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+  
+a, span {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.2s ease; /* Smooth color change on hover */
+}
+  
+span:hover, a:hover {
+    color: #E6B806; /* Red on hover */
+}
+  
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db; /* Light gray border */
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    outline: none;
+}
+  
+input:focus {
+    border-color: #2563eb; /* Blue border on focus */
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2); /* Blue focus ring */
+}
+  
+/* Submit Button */
+button {
+    background-color: #2563eb; /* Blue background */
+    color: #ffffff; /* White text */
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+} 
+  
+button:hover {
+    background-color: #1d4ed8; /* Darker blue on hover */
+}
+  
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .form-container {
+      width: 90%; /* Wider on smaller screens */
+      height: auto; /* Allow height to adjust */
+      padding: 1.5rem; /* Reduce padding */
+    }
+}
+  
+  
+/* Login Link */
+  
+.form-link {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.875rem; /* Small text size */
+    color: #6b7280; /* Tailwind's text-gray-500 equivalent */
+}
+  
+.form-link .link {
+    color: #2563eb; /* Tailwind's text-blue-700 equivalent */
+    text-decoration: underline;
+}
+  
+.form-link .link:hover {
+    color: #1d4ed8; /* Darker blue on hover */
+}
+
+/*PROFILE*/
+
+/* Font Import for Meie Script */
+@import url('https://fonts.googleapis.com/css2?family=Meie+Script&display=swap');
+
+/* Custom Font and Colors */
+.font-meie-script {
+  font-family: 'Meie Script', cursive;
+}
+
+.text-gold {
+  color: #FFC107; /* Gold */
+}
+
+.hover\:text-white:hover {
+  color: #FFFFFF; /* White for hover */
+}
+
+/* Even Larger Icon Styling */
+img.h-16 {
+  height: 4rem; /* Larger height for the icon */
+  width: 4rem;  /* Larger width for the icon */
+}
+
+img.md\:h-20 {
+  height: 5rem; /* Even larger height for medium+ screens */
+  width: 5rem;  /* Even larger width for medium+ screens */
+}
+
+img:hover {
+  filter: brightness(1.3); /* Brightens the icon significantly on hover */
+  transition: filter 0.3s ease-in-out;
+}
+
+/*LISTING*/
+
+.button-primary {
+    @apply bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300;
+}
+/*edit*/
+.button-secondary {
+    @apply bg-gray-300 text-blue-800 px-4 py-2 rounded hover:bg-gray-400 transition duration-300;
+}
+/*delete btn*/
+.button-danger {
+    @apply bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500 transition duration-300;
+}
+
+.hidden {
+    display: none;
+}
+  
+  
+.button-group {
+    display: flex;
+    gap: 0.5rem; /* Adjust spacing as needed */
+}
+    
+#toggle-form-btn {
+    transition: transform 0.2s ease;
+}
+  
+#toggle-form-btn:hover {
+    transform: scale(1.05);
+}
+  
+#create-listing-form.hidden {
+    display: none;
+}
+  
+#create-listing-form {
+    animation: fadeIn 0.3s ease-out;
+}
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+
+/*HOMEPAGE*/
+
+
+
+/* Banner Section */
+.banner {
+    position: relative;
+    height: 20vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.banner-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Default for mobile */
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* Add space between elements */
+    z-index: 2;
+    position: relative; /* Ensures it appears above the overlay */
+    height: 100%;
+}
+
+.text-container {
+    max-width: 600px; /* Limit the text width */
+    margin: 0 auto;
+    text-align: center; /* Default for mobile */
+}
+
+.text-container h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.text-container p {
+    font-size: 1rem;
+    color: #ddd;
+    margin-bottom: 1rem;
+}
+
+
+/* Image Container */
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Listings Grid */
+#listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 1.5rem;
+}
+
+#listings-grid img {
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0.375rem;
+}
+
+#listings-grid a {
+    text-align: center;
+    text-decoration: none;
+    background-color: #2563eb;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#listings-grid a:hover {
+    background-color: #1d4ed8;
+}
+
+/* Pagination */
+.pagination button {
+    background-color: #1A237E;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #123456;
+}
+
+/* Footer */
+footer {
+    background-color: #800020;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
