@@ -6,7 +6,7 @@
   <title>Listings</title>
   <link rel="stylesheet" href="/src/css/styles.css">
   <link rel="stylesheet" href="/src/css/style.css">
-  <script type="module" src="/src/js/api/listings/create.js" defer></script>
+  <script type="module" src="/src/js/api/listing/create.js" defer></script>
   <script type="module" src="/src/js/api/listing/view.js"></script>
   <script type="module" src="/src/js/api/global/logout.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -102,7 +102,8 @@
     
         <div class="flex space-x-4">
           <button type="submit" class="button-primary flex-1">Create Listing</button>
-          <button type="button" id="cancel-form-btn" class="button-secondary flex-1">Cancel</button>
+          <button type="button" id="cancel-form-btn" class="button-secondary w-full">Cancel</button>
+
         </div>
       </form>
     </section>
@@ -188,6 +189,26 @@
         createForm.classList.toggle("hidden");
       });
     });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  const cancelFormButton = document.getElementById("cancel-form-btn");
+
+  if (cancelFormButton) {
+    cancelFormButton.addEventListener("click", () => {
+      const listingForm = document.getElementById("listing-form");
+
+      if (listingForm) {
+        listingForm.reset(); // Clear the form
+      }
+      
+      // Redirect to the listings index page
+      window.location.href = "/listings/index.html";
+    });
+  }
+});
+
   </script>
   
 
