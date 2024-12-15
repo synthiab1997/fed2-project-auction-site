@@ -19,19 +19,64 @@ body {
 }
 
 /* Header and Footer */
+
+/* Header Styling */
 header {
-    background-color: #1A237E; /* Deep Navy Blue */
-    color: #FFFFFF; /* White */
+    background-color: #1A237E; /* Navy Blue */
+    color: white;
+    position: relative;
+    z-index: 10;
 }
 
-header a {
-    color: #FFFFFF;
+header nav {
+    position: relative; /* Allows absolute children */
+    height: 100%;
+    padding: 1rem 0;
 }
 
-header a:hover {
-    color: #FFC107; /* Gold Accent */
+header img {
+    height: 40px;
+    width: 40px;
 }
 
+header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffd700; /* Gold Title */
+    font-family: "Meie Script", cursive;
+    transition: color 0.3s ease;
+}
+
+header h1:hover {
+    color: white;
+}
+
+header .button-secondary,
+header .button-tertiary {
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border-radius: 0.375rem;
+    text-decoration: none;
+}
+
+header .button-secondary {
+    background-color: #ffffff; /* White Button */
+    color: #001f3f; /* Navy Text */
+}
+
+header .button-tertiary {
+    background-color: #ffd700; /* Gold Button */
+    color: #000000; /* Black Text */
+}
+
+header .button-secondary:hover,
+header .button-tertiary:hover {
+    opacity: 0.9;
+}
+
+
+  
 /* Customize the treasure chest icon container */
 .icon-container {
     background-color: #FFC107; /* Gold */
@@ -119,6 +164,7 @@ input:focus {
 }
 
 /* General Button Styles */
+
 .button-primary {
     display: inline-block;
     width: 100%;
@@ -453,8 +499,6 @@ img:hover {
 
 /*HOMEPAGE*/
 
-
-
 /* Banner Section */
 .banner {
     position: relative;
@@ -466,25 +510,15 @@ img:hover {
 .banner-overlay {
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
     z-index: 1;
 }
 
-.container {
-    display: flex;
-    flex-direction: column; /* Default for mobile */
-    justify-content: center;
-    align-items: center;
-    gap: 1rem; /* Add space between elements */
-    z-index: 2;
-    position: relative; /* Ensures it appears above the overlay */
-    height: 100%;
-}
-
 .text-container {
-    max-width: 600px; /* Limit the text width */
+    max-width: 600px; /* Limit text width */
     margin: 0 auto;
-    text-align: center; /* Default for mobile */
+    text-align: center;
+    z-index: 2; /* Ensure above overlay */
 }
 
 .text-container h1 {
@@ -500,8 +534,6 @@ img:hover {
     margin-bottom: 1rem;
 }
 
-
-/* Image Container */
 .image-container img {
     width: 100%;
     height: auto;
@@ -509,52 +541,85 @@ img:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+
 /* Listings Grid */
-#listings-grid {
+
+.grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
     gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-
-#listings-grid img {
-    border-top-left-radius: 0.375rem;
-    border-top-right-radius: 0.375rem;
+  
+/* Card Styling */
+.bg-white {
+    background-color: white;
 }
-
-#listings-grid a {
-    text-align: center;
-    text-decoration: none;
-    background-color: #2563eb;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    display: inline-block;
+  
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+  
+.shadow-md {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+  
+.overflow-hidden {
+    overflow: hidden;
+}
+  
+.p-4 {
+    padding: 1rem;
+}
+  
+.text-blue-800 {
+    color: #1A237E;
+}
+  
+.text-gray-600 {
+    color: #6B7280;
+}
+  
+.mt-1 {
+    margin-top: 0.25rem;
+}
+  
+.mt-4 {
     margin-top: 1rem;
-    transition: background-color 0.3s ease;
 }
 
-#listings-grid a:hover {
-    background-color: #1d4ed8;
+  
+/* Image Styling */
+.object-cover {
+    object-fit: cover;
 }
+  
+.h-40 {
+    height: 10rem;
+}
+  
+.w-full {
+    width: 100%;
+}
+  
 
 /* Pagination */
-.pagination button {
+.pagination-button {
     background-color: #1A237E;
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
-    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-
-.pagination button:hover {
+  
+.pagination-button.active {
     background-color: #123456;
 }
-
-/* Footer */
-footer {
-    background-color: #800020;
-    color: white;
-    text-align: center;
-    padding: 1rem;
+  
+.pagination-button:hover {
+    background-color: #303F9F;
 }
+  

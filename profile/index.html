@@ -11,23 +11,22 @@
 </head>
 <body class="bg-gray-100">
   <header class="bg-blue-800 text-white shadow-md">
-    <nav class="container mx-auto flex justify-between items-center py-4">
-      <!-- Left Placeholder -->
-      <div></div>
+    <nav class="container mx-auto flex items-center justify-between py-4">
+      <!-- Logo Section -->
+      <div class="flex items-center space-x-3">
+        <img src="/images/treasure_17947595.png" alt="Treasure Chest Logo" class="h-10 w-10">
+      </div>
   
-      <!-- Centered Title with Custom Icon -->
-      <div class="flex items-center space-x-2">
-        <!-- Page Title -->
-        <h1
-          class="text-gold font-meie-script text-3xl md:text-4xl hover:text-white transition-colors duration-300"
-        >
+      <!-- Title Section -->
+      <div class="flex-1 text-center">
+        <a href="/" class="text-gold font-meie-script text-3xl md:text-4xl hover:text-white transition-colors duration-300">
           The Golden Market
-        </h1>
-      </div> 
+        </a>
+      </div>
   
       <!-- Logout Button -->
       <div>
-        <a href="#" id="logout-btn" class="hover:underline">Logout</a>
+        <a href="/auth/login/index.html" class="button-secondary">Logout</a>
       </div>
     </nav>
   </header>
@@ -150,10 +149,27 @@
     </div>
   </main>
 
+   
   <!-- Footer -->
-  <footer class="bg-burgundy text-white py-6 mt-10">
+  <footer class="bg-burgundy text-white py-6">
     <div class="container mx-auto text-center">
       <p>&copy; 2024 The Golden Market. All rights reserved.</p>
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="/terms.html" class="hover:text-yellow-400">Terms of Service</a>
+        <span class="text-white">|</span>
+        <a href="/privacy.html" class="hover:text-yellow-400">Privacy Policy</a>
+      </div>
+      <div class="flex justify-center space-x-6 mt-4">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="hover:text-yellow-400">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="hover:text-yellow-400">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://github.com" target="_blank" aria-label="GitHub" class="hover:text-yellow-400">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
     </div>
   </footer>
   <script type="module" src="/src/js/api/global/logout.js"></script>

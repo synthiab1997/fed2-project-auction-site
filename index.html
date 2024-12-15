@@ -17,11 +17,16 @@
       <!-- Logo Section -->
       <div class="flex items-center space-x-3">
         <img src="/images/treasure_17947595.png" alt="Treasure Chest Logo" class="h-10 w-10">
-        <h1 class="text-gold font-meie-script text-3xl md:text-4xl hover:text-white transition-colors duration-300">
-          The Golden Market
-        </h1>
       </div>
-      <!-- Navigation Links -->
+  
+      <!-- Title Section -->
+      <div class="flex-1 text-center">
+        <a href="/" class="text-gold font-meie-script text-3xl md:text-4xl hover:text-white transition-colors duration-300">
+          The Golden Market
+        </a>
+      </div>
+  
+      <!-- Navigation Buttons -->
       <div class="flex items-center space-x-4">
         <a href="/auth/login/index.html" class="button-secondary">Login</a>
         <a href="/auth/register/index.html" class="button-tertiary">Register</a>
@@ -29,16 +34,18 @@
     </nav>
   </header>
   
+  
   <!-- Banner Section -->
   <section class="banner relative bg-cover bg-center text-white" style="background-image: url('/images/xmas%20img%20auction.jpeg'); height: 20vh;">
-    <div class="banner-overlay absolute inset-0 bg-black bg-opacity-50"></div>
-    <div class="container mx-auto relative z-10 flex flex-col md:flex-row items-center h-full">
+    <div class="banner-overlay"></div>
+    <div class="container mx-auto flex flex-col md:flex-row items-center h-full">
       <!-- Left Content: Text -->
       <div class="text-container md:w-1/2 text-center md:text-left px-6">
         <h1 class="text-2xl md:text-3xl font-bold mb-2">The Christmas Jewellery Auction</h1>
         <p class="text-sm md:text-lg mb-4">Themed auction, closes on 16 December.</p>
         <a href="#" class="button-primary px-4 py-2">Explore the catalogue</a>
       </div>
+  
       <!-- Right Content: Image -->
       <div class="image-container md:w-1/2 hidden md:block">
         <img src="/images/banner-image.jpg" alt="Jewellery Auction" class="w-full h-auto rounded-lg shadow-md">
@@ -46,20 +53,79 @@
     </div>
   </section>
   
+  <!-- Search Bar -->
+  <section class="mb-6">
+    <form id="search-form" class="flex">
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="Search listings..." 
+        class="flex-1 p-3 border rounded-l focus:outline-none focus:ring-2 focus:ring-blue-800"
+      />
+      <button type="submit" class="button-primary rounded-r">Search</button>
+    </form>
+  </section>
+  
+  
   <!-- Listings Section -->
   <section class="listings py-10">
     <div class="container mx-auto">
       <h2 class="text-3xl font-bold text-center text-blue-800 mb-6">Latest Listings</h2>
-      <div id="listings-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Example Listing Card -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-          <img src="/images/example-listing.jpg" alt="Listing Image" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <h3 class="text-lg font-bold text-blue-800">Antique Vase</h3>
-            <p class="text-gray-600">Starting Bid: <span class="text-yellow-400">50 credits</span></p>
-            <a href="#" class="block mt-4 text-center bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-700">View Listing</a>
+      <div id="listings-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+  
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img
+                src="/images/scuplture img.jpeg"
+                alt="Blue Sculpture"
+                class="w-full h-40 object-cover"
+              />
+              <div class="p-4">
+                <h3 class="text-lg font-bold text-blue-800">Blue Sculpture</h3>
+                <p class="text-gray-600 text-sm mt-1">
+                  A handcrafted blue sculpture with exquisite detail.
+                </p>
+                <p class="text-gray-600 text-sm mt-1">Bids: 10</p>
+                <a href="#" class="button-primary mt-4 block text-center">View Listing</a>
+              </div>
+            </div>
+            
+            <!-- Example Listing Card 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img
+                src="/images/jewellery.jpeg"
+                alt="Gold Jewellery"
+                class="w-full h-40 object-cover"
+              />
+              <div class="p-4">
+                <h3 class="text-lg font-bold text-blue-800">Gold Jewellery</h3>
+                <p class="text-gray-600 text-sm mt-1">
+                  Elegant gold jewellery set with fine craftsmanship.
+                </p>
+                <p class="text-gray-600 text-sm mt-1">Bids: 25</p>
+                <a href="#" class="button-primary mt-4 block text-center">View Listing</a>
+              </div>
+            </div>
+          
+            <!-- Example Listing Card 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <img
+                src="/images/painting img.jpeg"
+                alt="Abstract Painting"
+                class="w-full h-40 object-cover"
+              />
+              <div class="p-4">
+                <h3 class="text-lg font-bold text-blue-800">Abstract Painting</h3>
+                <p class="text-gray-600 text-sm mt-1">
+                  A captivating abstract painting with vibrant colors.
+                </p>
+                <p class="text-gray-600 text-sm mt-1">Bids: 5</p>
+                <a href="#" class="button-primary mt-4 block text-center">View Listing</a>
+              </div>
+            </div>
           </div>
-        </div>
+          
         <!-- Additional listing cards dynamically populated -->
       </div>
     </div>
@@ -68,20 +134,35 @@
   <!-- Pagination Section -->
   <section class="pagination py-6">
     <div class="container mx-auto">
-      <div id="pagination" class="flex justify-center space-x-4">
-        <button class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">1</button>
-        <button class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">2</button>
-        <button class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">3</button>
-      </div>
+      <div id="pagination" class="flex justify-center space-x-4"></div>
     </div>
   </section>
   
-  <!-- Footer Section -->
+
+  <!-- Footer -->
   <footer class="bg-burgundy text-white py-6">
     <div class="container mx-auto text-center">
       <p>&copy; 2024 The Golden Market. All rights reserved.</p>
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="/terms.html" class="hover:text-yellow-400">Terms of Service</a>
+        <span class="text-white">|</span>
+        <a href="/privacy.html" class="hover:text-yellow-400">Privacy Policy</a>
+      </div>
+      <div class="flex justify-center space-x-6 mt-4">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="hover:text-yellow-400">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="hover:text-yellow-400">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://github.com" target="_blank" aria-label="GitHub" class="hover:text-yellow-400">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
     </div>
   </footer>
+  
+  
   
 </body>
 </html>

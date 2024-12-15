@@ -1,74 +1,103 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All Listings</title>
-    <meta name="description" content="Here you see all the listings" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/src/css/style.css" />
-    <script type="module" src="/src/js/app.js"></script>
-    <script type="module" src="/src/js/ui/global/logout.js"></script>
-    <script type="module" src="/src/js/ui/listing/view.js"></script>
-    <script type="module" src="/src/js/ui/home/home.js"></script>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <header class="navbar navbar-expand-lg navbar-light bg-dark py-3">
-      <nav class="container">
-        <div>
-          <a href="/index.html" class="navbar-brand d-flex align-items-center">
-            <img
-              src="/images/logo.png"
-              alt="Auction Logo"
-              id="auction-logo"
-              class="me-2"
-            />
-          </a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Bids - The Golden Market</title>
+  <link rel="stylesheet" href="/src/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script type="module" src="/src/js/api/bids.js" defer></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header Section -->
+    <header class="bg-blue-800 text-white shadow-md">
+      <nav class="container mx-auto flex items-center justify-between py-4">
+        <!-- Logo Section -->
+        <div class="flex items-center space-x-3">
+          <img src="/images/treasure_17947595.png" alt="Treasure Chest Logo" class="h-10 w-10">
         </div>
-        <div class="ms-auto d-flex align-items-center">
-          <a class="nav-link" href="/index.html">Home</a>
-          <a class="nav-link" href="/profile/index.html">My Profile</a>
-          <a
-            href="/listing/create/index.html"
-            class="nav-link"
-            id="createListingForm"
-            >Create Listing</a
-          >
-          <a class="nav-link" href="/auth/login/index.html" id="loginButton"
-            >Login</a
-          >
-          <a
-            class="nav-link"
-            href="/auth/register/index.html"
-            id="registerButton"
-            >Register</a
-          >
-          <button id="logoutButton" class="btn btn-outline-primary ms-2">
-            Logout
-          </button>
+    
+        <!-- Title Section -->
+      <div class="flex-1 text-center">
+        <a href="/" class="text-gold font-meie-script text-3xl md:text-4xl hover:text-white transition-colors duration-300">
+          The Golden Market
+        </a>
+      </div>
+    
+        <!-- Navigation Buttons -->
+        <div class="flex items-center space-x-4">
+          <a href="/auth/login/index.html" class="button-secondary">Login</a>
+          <a href="/auth/register/index.html" class="button-tertiary">Register</a>
         </div>
       </nav>
     </header>
+    
+  
 
-    <!-- Main Content -->
-    <div class="container my-5 bg-dark">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="mb-0">All Listings</h1>
-        <!-- Pagination Controls -->
-        <div>
-          <button data-page="1" class="btn btn-outline-danger">Page 1</button>
-          <button data-page="2" class="btn btn-outline-danger">Page 2</button>
-          <button data-limit="12" class="btn btn-outline-danger">
-            All Listings
-          </button>
-        </div>
+
+  <!-- Main Content -->
+  <main class="container mx-auto my-10">
+    <!-- Listing Details -->
+    <section class="mb-8">
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 id="listing-title" class="text-3xl font-bold text-blue-800 mb-2">Loading...</h2>
+        <p id="listing-description" class="text-gray-600 text-lg mb-4">Fetching description...</p>
+        <p id="listing-deadline" class="text-sm text-gray-500">Deadline: <span>Loading...</span></p>
       </div>
+    </section>
 
-      <!-- Listings List -->
-      <div id="listingList" class="row">
-        <!-- Dynamically loaded post cards will appear here -->
+    <!-- Place Bid Section -->
+    <section class="mb-8">
+      <h3 class="text-2xl font-bold text-blue-800 mb-4">Place a Bid</h3>
+      <form id="bid-form" class="bg-white rounded-lg shadow-md p-6">
+        <div class="mb-4">
+          <label for="bid-amount" class="block text-gray-700">Bid Amount (in credits)</label>
+          <input 
+            type="number" 
+            id="bid-amount" 
+            name="bid-amount" 
+            required 
+            min="1" 
+            class="w-full p-2 border rounded focus:outline-blue-500"
+          />
+        </div>
+        <button type="submit" class="button-primary">Place Bid</button>
+      </form>
+    </section>
+
+    <!-- Bids List -->
+    <section>
+      <h3 class="text-2xl font-bold text-blue-800 mb-4">All Bids</h3>
+      <div id="bids-list" class="space-y-4 bg-white rounded-lg shadow-md p-6">
+        <!-- Dynamically populated bids -->
+        <p class="text-gray-500 text-sm">No bids yet.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-burgundy text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 The Golden Market. All rights reserved.</p>
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="/terms.html" class="hover:text-yellow-400">Terms of Service</a>
+        <span class="text-white">|</span>
+        <a href="/privacy.html" class="hover:text-yellow-400">Privacy Policy</a>
+      </div>
+      <div class="flex justify-center space-x-6 mt-4">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="hover:text-yellow-400">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="hover:text-yellow-400">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://github.com" target="_blank" aria-label="GitHub" class="hover:text-yellow-400">
+          <i class="fab fa-github"></i>
+        </a>
       </div>
     </div>
-  </body>
+  </footer>
+  
+</body>
 </html>

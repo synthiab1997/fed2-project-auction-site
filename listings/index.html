@@ -7,29 +7,30 @@
   <link rel="stylesheet" href="/src/css/styles.css">
   <link rel="stylesheet" href="/src/css/style.css">
   <script type="module" src="/src/js/api/listings/create.js" defer></script>
+  <script type="module" src="/src/js/api/listing/view.js"></script>
   <script type="module" src="/src/js/api/global/logout.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="bg-gray-100">
-  <!-- Header -->
+  <!-- Header Section -->
   <header class="bg-blue-800 text-white shadow-md">
     <nav class="container mx-auto flex items-center justify-between py-4">
-      <!-- Spacer for Center Alignment -->
-      <div class="flex-1"></div>
-      
-      <!-- Centered Page Title -->
-      <div class="flex items-center justify-center flex-1">
-        <h1
-          class="text-gold font-meie-script text-3xl md:text-4xl hover:text-white transition-colors duration-300"
-        >
-          The Golden Market
-        </h1>
+      <!-- Logo Section -->
+      <div class="flex items-center space-x-3">
+        <img src="/images/treasure_17947595.png" alt="Treasure Chest Logo" class="h-10 w-10">
       </div>
   
-      <!-- Right-Aligned Links -->
-      <div class="flex items-center justify-end flex-1 space-x-4">
-        <a href="/profile/index.html" class="hover:underline">My Profile</a>
-        <a href="/index.html" class="hover:underline">Logout</a>
+      <!-- Title Section -->
+      <div class="flex-1 text-center">
+        <a href="/" class="text-gold font-meie-script text-3xl md:text-4xl hover:text-white transition-colors duration-300">
+          The Golden Market
+        </a>
+      </div>
+  
+      <!-- Navigation Buttons -->
+      <div class="flex items-center space-x-4">
+        <a href="/auth/login/index.html" class="button-secondary">Login</a>
+        <a href="/auth/register/index.html" class="button-tertiary">Register</a>
       </div>
     </nav>
   </header>
@@ -190,10 +191,27 @@
   </script>
   
 
+  
   <!-- Footer -->
-  <footer class="bg-burgundy text-white py-6 mt-10">
+  <footer class="bg-burgundy text-white py-6">
     <div class="container mx-auto text-center">
       <p>&copy; 2024 The Golden Market. All rights reserved.</p>
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="/terms.html" class="hover:text-yellow-400">Terms of Service</a>
+        <span class="text-white">|</span>
+        <a href="/privacy.html" class="hover:text-yellow-400">Privacy Policy</a>
+      </div>
+      <div class="flex justify-center space-x-6 mt-4">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="hover:text-yellow-400">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="hover:text-yellow-400">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://github.com" target="_blank" aria-label="GitHub" class="hover:text-yellow-400">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
     </div>
   </footer>
 </body>
