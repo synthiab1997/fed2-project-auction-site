@@ -552,6 +552,11 @@ img:hover {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+#listing-grid {
+    display: grid;
+    gap: 1.5rem;
+}
   
 /* Card Styling */
 .bg-white {

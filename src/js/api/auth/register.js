@@ -1,71 +1,63 @@
-// Import the necessary API endpoint from constants.js
-import { API_AUTH_REGISTER } from "../constants.js";
-
-/**
- * Function to register a new user.
- * @param {string} name - The user's name.
- * @param {string} email - The user's email address.
- * @param {string} password - The user's password.
- * @returns {Object} - The response data from the API if successful.
- * @throws {Error} - An error with a message if registration fails.
- */
-export const registerUser = async (name, email, password) => {
-  const response = await fetch(API_AUTH_REGISTER, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name, email, password }),
-  });
-
-  if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message || "Unable to register user.");
-  }
-
-  return await response.json();
-};
-
-// Event listener for form submission
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("registerForm");
+
   if (!form) {
-    console.error("Form with id 'registerForm' not found.");
-    return;
+      console.error("Register form not found.");
+      return;
   }
 
   form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+      event.preventDefault();
 
-    // Clear previous messages
-    const errorMessages = document.getElementById("errorMessages");
-    const successMessages = document.getElementById("successMessages");
-    errorMessages.innerText = "";
-    successMessages.innerText = "";
+      const errorMessages = document.getElementById("errorMessages");
+      const successMessages = document.getElementById("successMessages");
+      errorMessages.innerText = "";
+      successMessages.innerText = "";
 
-    // Retrieve form data
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+      // Gather form data
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+    
 
-    // Basic validation
-    if (!name || !email || !password) {
-      errorMessages.innerText = "All fields are required.";
-      return;
-    }
+      // Validate required fields
+      if (!name || !email || !password) {
+          errorMessages.innerText = "Name, email, and password are required.";
+          return;
+      }
 
-    try {
-      // Attempt to register the user
-      const responseData = await registerUser(name, email, password);
+      try {
+          const userData = {
+              name,
+              email,
+              password,
+              bio: ""
+          };
 
-      // Save the username to localStorage for future use
-      localStorage.setItem("username", name);
+          // Send data to the registration API
+          const response = await fetch("https://v2.api.noroff.dev/auth/register", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(userData),
+          });
 
-      // Display success message and redirect
-      successMessages.innerText = "User registered successfully!";
-      setTimeout(() => (window.location.href = "/auth/login/index.html"), 800);
-    } catch (error) {
-      errorMessages.innerText = `Error: ${error.message}`;
-    }
+          const responseData = await response.json();
+
+          if (response.status !== 201) {
+            console.error("Server Response:", responseData);
+              throw new Error(responseData.message || "Registration failed. Please check the inputs.");
+          }
+
+          successMessages.innerText = "Registration successful! Redirecting to login...";
+
+          // Redirect after a short delay
+          setTimeout(() => {
+              window.location.href = "/auth/login/index.html";
+          }, 2000);
+
+      } catch (error) {
+          console.error("Registration failed:", error);
+          errorMessages.innerText = "Error: " + error.message;
+      }
   });
 });

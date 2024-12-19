@@ -2,7 +2,7 @@ const fetchListings = async () => {
   const token = localStorage.getItem("accessToken");
 
   try {
-    const response = await fetch("https://api.noroff.dev/v2/auction/listings", {
+    const response = await fetch("https://v2.api.noroff.dev/auction/listings", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -19,22 +19,22 @@ const fetchListings = async () => {
     listingsGrid.innerHTML = "";
 
     // Loop through listings and create cards
-    listings.forEach((listing) => {
+    listings.data.forEach((listing) => {
       const card = document.createElement("div");
       card.classList.add("bg-white", "rounded-lg", "shadow-md", "overflow-hidden");
 
       card.innerHTML = `
         <img
-          src="${listing.media[0] || '/images/default-listing.jpg'}"
+          src="${listing.media?.[0]?.url || '../../../images/bracelet.jpeg'}"
           alt="${listing.title || 'Listing Image'}"
           class="w-full h-48 object-cover"
         />
         <div class="p-4">
           <h3 class="text-lg font-bold text-blue-800">${listing.title}</h3>
           <p class="text-gray-600 text-sm mt-1">${listing.description || 'No description available.'}</p>
-          <p class="text-gray-600 text-sm mt-1">Bids: ${listing._count.bids || 0}</p>
+          <p class="text-gray-600 text-sm mt-1">Bids: ${listing._count?.bids || 0}</p>
           <div class="mt-4 flex justify-between items-center">
-            <a href="/listings/single.html?id=${listing.id}" class="button-primary">Place Bid</a>
+            <a href="/listings/single.html?id=${listing.id}" class="button-primary">View Details</a>
             <div class="space-x-2">
               <button class="button-secondary">Edit</button>
               <button class="button-danger">Delete</button>
@@ -54,7 +54,7 @@ const createListing = async (listingData) => {
   const token = localStorage.getItem("accessToken");
 
   try {
-    const response = await fetch("https://api.noroff.dev/v2/auction/listings", {
+    const response = await fetch("https://v2.api.noroff.dev/auction/listings", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (cancelFormButton) {
     cancelFormButton.addEventListener("click", () => {
       listingForm.reset(); // Clear the form
-      window.location.href = "/listings/index.html"; // Redirect to listings page
+      createFormSection.classList.add("hidden"); // Hide the form
     });
   }
 
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         listingCard.innerHTML = `
           <img
-            src="${newListing.media[0] || '/images/default-listing.jpg'}"
+            src="${newListing.media?.[0]?.url || '/images/bracelet.jpeg'}"
             alt="${newListing.title || 'Listing Image'}"
             class="w-full h-48 object-cover"
           />
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <p class="text-gray-600 text-sm mt-1">${newListing.description}</p>
             <p class="text-gray-600 text-sm mt-1">Bids: ${newListing._count?.bids || 0}</p>
             <div class="mt-4 flex justify-between items-center">
-              <a href="/listings/single.html?id=${newListing.id}" class="button-primary">Place Bid</a>
+              <a href="/listings/single.html?id=${newListing.id}" class="button-primary">View Details</a>
               <div class="flex space-x-2">
                 <button class="button-secondary">Edit</button>
                 <button class="button-danger">Delete</button>

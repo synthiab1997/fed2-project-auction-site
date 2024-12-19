@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Listings</title>
-  <link rel="stylesheet" href="/src/css/styles.css">
-  <link rel="stylesheet" href="/src/css/style.css">
-  <script type="module" src="/src/js/api/listing/create.js" defer></script>
-  <script type="module" src="/src/js/api/listing/view.js"></script>
-  <script type="module" src="/src/js/api/global/logout.js"></script>
+  <link rel="stylesheet" href="../src/css/styles.css">
+  <link rel="stylesheet" href="../src/css/style.css">
+  <script type="module" src="../src/js/api/listing/view.js" defer></script>
+  <script type="module" src="../src/js/api/listing/create.js"></script>
+  <script type="module" src="../src/js/api/global/logout.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="bg-gray-100">
@@ -38,12 +38,7 @@
 
   <!-- Main Content -->
   <main class="container mx-auto my-10">
-    <!-- Page Heading -->
-    <section class="text-center mb-10">
-      <h2 class="text-4xl font-bold text-blue-800">Auction Listings</h2>
-      <p class="text-lg text-gray-600 mt-2">Explore the latest items for bidding</p>
-    </section>
-
+   
     <!-- Create Listing Button -->
     <section class="text-right mb-6">
       <button
@@ -112,7 +107,7 @@
 
     <!-- Listings Grid -->
     <section class="mx-auto w-3/4 max-w-screen-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="listings-grid">
-      <!-- Example Card -->
+      <!-- Example Card
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <img
         src="/images/scuplture img.jpeg"
@@ -134,7 +129,7 @@
           </div>
         </div>
       </div>
-      <!-- Repeat this card dynamically -->  
+      <!-- Repeat this card dynamically -- 
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <img
         src="/images/bracelet.jpeg"
@@ -177,7 +172,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </section>
   </main>
   <script defer>
@@ -191,25 +186,19 @@
     });
   </script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-  const cancelFormButton = document.getElementById("cancel-form-btn");
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const cancelFormButton = document.getElementById("cancel-form-btn");
+    
+    if (cancelFormButton) {
+      cancelFormButton.addEventListener("click", () => {
+        // Clear form and redirect
+        window.location.href = "index.html"; // Ensure this path matches your deployment structure
+      });
+    }
+  });
+</script>
 
-  if (cancelFormButton) {
-    cancelFormButton.addEventListener("click", () => {
-      const listingForm = document.getElementById("listing-form");
-
-      if (listingForm) {
-        listingForm.reset(); // Clear the form
-      }
-      
-      // Redirect to the listings index page
-      window.location.href = "/listings/index.html";
-    });
-  }
-});
-
-  </script>
   
 
   
