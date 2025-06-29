@@ -1,27 +1,29 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const avatarModal = document.getElementById("avatar-modal");
-  const avatarUploadButton = document.getElementById("choose-avatar-btn");
-  const closeModalButton = document.getElementById("close-modal-btn");
-  const avatarImages = document.querySelectorAll("[data-avatar]");
-  const userAvatar = document.getElementById("user-avatar");
+const form = document.getElementById("avatarForm");
+const name = localStorage.getItem("name");
+const token = localStorage.getItem("accessToken");
 
-  // Open the modal
-  avatarUploadButton.addEventListener("click", () => {
-    avatarModal.classList.remove("hidden");
-    avatarModal.classList.add("flex");
-  });
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-  // Close the modal
-  closeModalButton.addEventListener("click", () => {
-    avatarModal.classList.add("hidden");
-  });
+  const url = document.getElementById("avatarUrl").value.trim();
 
-  // Preview and select avatar
-  avatarImages.forEach((avatar) => {
-    avatar.addEventListener("click", (event) => {
-      const newAvatar = avatar.getAttribute("data-avatar");
-      userAvatar.setAttribute("src", newAvatar); // Update avatar preview
-      avatarModal.classList.add("hidden"); // Close modal
+  try {
+    const res = await fetch(`https://v2.api.noroff.dev/auction/profiles/${name}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ avatar: { url } })
     });
-  });
+
+    const data = await res.json();
+    if (res.ok) {
+      alert("Avatar updated!");
+    } else {
+      alert(data.errors?.[0]?.message || "Failed to update avatar.");
+    }
+  } catch (err) {
+    alert("Network error.");
+  }
 });

@@ -1,163 +1,71 @@
-const fetchListings = async () => {
-  const token = localStorage.getItem("accessToken");
-
-  try {
-    const response = await fetch("https://v2.api.noroff.dev/auction/listings", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch listings.");
-    }
-
-    const listings = await response.json();
-    const listingsGrid = document.getElementById("listings-grid");
-
-    // Clear the grid
-    listingsGrid.innerHTML = "";
-
-    // Loop through listings and create cards
-    listings.data.forEach((listing) => {
-      const card = document.createElement("div");
-      card.classList.add("bg-white", "rounded-lg", "shadow-md", "overflow-hidden");
-
-      card.innerHTML = `
-        <img
-          src="${listing.media?.[0]?.url || '../../../images/bracelet.jpeg'}"
-          alt="${listing.title || 'Listing Image'}"
-          class="w-full h-48 object-cover"
-        />
-        <div class="p-4">
-          <h3 class="text-lg font-bold text-blue-800">${listing.title}</h3>
-          <p class="text-gray-600 text-sm mt-1">${listing.description || 'No description available.'}</p>
-          <p class="text-gray-600 text-sm mt-1">Bids: ${listing._count?.bids || 0}</p>
-          <div class="mt-4 flex justify-between items-center">
-            <a href="/listings/single.html?id=${listing.id}" class="button-primary">View Details</a>
-            <div class="space-x-2">
-              <button class="button-secondary">Edit</button>
-              <button class="button-danger">Delete</button>
-            </div>
-          </div>
-        </div>
-      `;
-
-      listingsGrid.appendChild(card);
-    });
-  } catch (error) {
-    console.error("Error fetching listings:", error);
-  }
-};
-
-const createListing = async (listingData) => {
-  const token = localStorage.getItem("accessToken");
-
-  try {
-    const response = await fetch("https://v2.api.noroff.dev/auction/listings", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(listingData),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to create listing.");
-    }
-
-    const newListing = await response.json();
-    return newListing;
-  } catch (error) {
-    console.error("Error creating listing:", error);
-    throw error;
-  }
-};
-
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleButton = document.getElementById("toggle-form-btn");
-  const createFormSection = document.getElementById("create-listing-form");
-  const cancelFormButton = document.getElementById("cancel-form-btn");
   const listingForm = document.getElementById("listing-form");
-  const listingsGrid = document.getElementById("listings-grid");
+  const toggleButton = document.getElementById("toggle-form-btn");
+  const cancelFormButton = document.getElementById("cancel-form-btn");
+  const createFormSection = document.getElementById("create-listing-form");
+  const token = localStorage.getItem("accessToken");
 
-  // Fetch Listings on Load
-  fetchListings();
+  // Toggle form visibility
+  toggleButton?.addEventListener("click", () => {
+    createFormSection.classList.toggle("hidden");
+    listingForm.reset();
+    listingForm.removeAttribute("data-edit-id");
+  });
 
-  // Toggle Form Visibility
-  if (toggleButton) {
-    toggleButton.addEventListener("click", () => {
-      createFormSection.classList.toggle("hidden");
-    });
-  }
+  // Cancel button
+  cancelFormButton?.addEventListener("click", () => {
+    listingForm.reset();
+    createFormSection.classList.add("hidden");
+    listingForm.removeAttribute("data-edit-id");
+  });
 
-  // Cancel Button Logic
-  if (cancelFormButton) {
-    cancelFormButton.addEventListener("click", () => {
-      listingForm.reset(); // Clear the form
-      createFormSection.classList.add("hidden"); // Hide the form
-    });
-  }
+  // Form submit
+  listingForm?.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  // Handle Form Submission
-  if (listingForm) {
-    listingForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
+    const title = document.getElementById("title").value.trim();
+    const description = document.getElementById("description").value.trim();
+    const mediaUrl = document.getElementById("media").value.trim();
+    const endsAt = new Date(document.getElementById("deadline").value).toISOString();
 
-      // Collect form data
-      const title = document.getElementById("title").value.trim();
-      const description = document.getElementById("description").value.trim();
-      const deadline = document.getElementById("deadline").value;
-      const mediaFiles = document.getElementById("media").files;
+    const payload = {
+      title,
+      description,
+      endsAt,
+      media: [{ url: mediaUrl, alt: title }]
+    };
 
-      const media = [];
-      for (let i = 0; i < mediaFiles.length; i++) {
-        media.push(URL.createObjectURL(mediaFiles[i]));
-      }
+    const isEdit = listingForm.dataset.editId;
+    const url = isEdit
+      ? `https://v2.api.noroff.dev/auction/listings/${isEdit}`
+      : "https://v2.api.noroff.dev/auction/listings";
 
-      const listingData = {
-        title,
-        description,
-        endsAt: new Date(deadline).toISOString(),
-        media,
-      };
+    const method = isEdit ? "PUT" : "POST";
 
-      try {
-        const newListing = await createListing(listingData);
+    try {
+      const res = await fetch(url, {
+        method,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
 
-        // Add new listing to the grid
-        const listingCard = document.createElement("div");
-        listingCard.classList.add("bg-white", "rounded-lg", "shadow-md", "overflow-hidden");
+      const data = await res.json();
 
-        listingCard.innerHTML = `
-          <img
-            src="${newListing.media?.[0]?.url || '/images/bracelet.jpeg'}"
-            alt="${newListing.title || 'Listing Image'}"
-            class="w-full h-48 object-cover"
-          />
-          <div class="p-4">
-            <h3 class="text-lg font-bold text-blue-800">${newListing.title}</h3>
-            <p class="text-gray-600 text-sm mt-1">${newListing.description}</p>
-            <p class="text-gray-600 text-sm mt-1">Bids: ${newListing._count?.bids || 0}</p>
-            <div class="mt-4 flex justify-between items-center">
-              <a href="/listings/single.html?id=${newListing.id}" class="button-primary">View Details</a>
-              <div class="flex space-x-2">
-                <button class="button-secondary">Edit</button>
-                <button class="button-danger">Delete</button>
-              </div>
-            </div>
-          </div>
-        `;
-
-        listingsGrid.appendChild(listingCard);
-
-        // Reset and hide the form
+      if (res.ok) {
+        alert(isEdit ? "Listing updated!" : "Listing created!");
         listingForm.reset();
+        listingForm.removeAttribute("data-edit-id");
         createFormSection.classList.add("hidden");
-      } catch (error) {
-        alert("Failed to create listing. Please try again.");
+        location.reload();
+      } else {
+        alert(data.errors?.[0]?.message || "Operation failed.");
       }
-    });
-  }
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      alert("Something went wrong.");
+    }
+  });
 });

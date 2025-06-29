@@ -5,14 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
     logoutButton.addEventListener("click", (event) => {
       event.preventDefault();
 
-      // Clear localStorage or session data
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("userId");
-      localStorage.removeItem("username");
-      localStorage.removeItem("credits");
+      // Clear all session data
+      localStorage.clear();
 
-      // Redirect to the homepage
-      window.location.href = "/";
+      // Redirect to login or home
+      window.location.href = "/auth/login/index.html";
     });
   }
 });
