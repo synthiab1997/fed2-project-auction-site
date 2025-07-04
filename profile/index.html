@@ -1,178 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile</title>
-  <link rel="stylesheet" href="/src/css/styles.css">
-  <link rel="stylesheet" href="/src/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile | The Golden Market</title>
+  <link rel="stylesheet" href="/src/css/styles.css" />
+  <script type="module" src="/src/js/api/global/logout.js" defer></script>
+  <script type="module" src="/src/js/api/profile/profile.js" defer></script>
   <script type="module" src="/src/js/api/profile/avatar.js" defer></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 </head>
 <body class="bg-gray-100">
-  <header class="bg-blue-800 text-white shadow-md">
-    <nav class="container mx-auto flex items-center justify-between py-4">
-      <!-- Logo Section -->
-      <div class="flex items-center space-x-3">
-        <img src="/images/treasure_17947595.png" alt="Treasure Chest Logo" class="h-10 w-10">
-      </div>
-  
-      <!-- Title Section -->
-      <div class="flex-1 text-center">
-        <a href="/" class="text-gold font-meie-script text-3xl md:text-4xl hover:text-white transition-colors duration-300">
-          The Golden Market
-        </a>
-      </div>
-  
-      <!-- Logout Button -->
-      <div>
-        <a href="/auth/login/index.html" class="button-secondary">Logout</a>
-      </div>
-    </nav>
-  </header>
-  
 
-  <!-- Profile Section -->
-  <main class="container mx-auto my-10">
-    <div class="bg-white p-8 rounded-lg shadow-md max-w-xl mx-auto">
-      <h2 class="text-2xl font-bold text-center text-blue-800 mb-6">My Profile</h2>
+ <!-- Header -->
+<header class="bg-blue-800 text-white shadow-md">
+  <nav class="container mx-auto flex flex-wrap items-center justify-between py-4">
+    <!-- Logo -->
+    <a href="/" class="flex items-center space-x-2">
+      <img src="/images/treasure_17947595.png" alt="Logo" class="h-10 w-10">
+      <h1 class="text-gold font-meie-script text-3xl">The Golden Market</h1>
+    </a>
 
-        <!-- Avatar Section -->
-        <div class="flex flex-col items-center mb-6">
-          <img
-            src="/images/avataaars.png"
-            alt="User Avatar"
-            id="user-avatar"
-            class="rounded-full h-40 w-40 border-2 border-blue-800 mb-4"
-          />
-          <button
-            id="choose-avatar-btn"
-            type="button"
-            class="button-tertiary"
-          >
-            Update Avatar
-          </button>
-        </div>
-
-      <!-- Modal for Avatar Options -->
-      <div id="avatar-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-        <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
-          <h3 class="text-lg font-bold text-center text-blue-800 mb-4">Select an Avatar</h3>
-          <div class="grid grid-cols-3 gap-4">
-            <img
-              src="/images/avatar1.png"
-              alt="Avatar 1"
-              class="cursor-pointer rounded-full h-24 w-24 border-2 hover:border-blue-800"
-              data-avatar="/images/avatar1.png"
-            />
-            <img
-              src="/images/avatar2.png"
-              alt="Avatar 2"
-              class="cursor-pointer rounded-full h-24 w-24 border-2 hover:border-blue-800"
-              data-avatar="/images/avatar2.png"
-            />
-            <img
-              src="/images/avatar3.png"
-              alt="Avatar 3"
-              class="cursor-pointer rounded-full h-24 w-24 border-2 hover:border-blue-800"
-              data-avatar="/images/avatar3.png"
-            />
-          </div>
-          <div class="text-center mt-4">
-            <button id="close-modal-btn" class="button-primary">
-              Cancel
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- User Info -->
-      <p class="text-gray-700 mb-2"><strong>Username:</strong> <span id="username">Jane Doe</span></p>
-      <p class="text-gray-700 mb-4"><strong>Credits:</strong> <span id="credits"> 1000</span></p>
-
-      <!-- Update Profile Form -->
-      <form id="profile-form" class="space-y-4">¨
-        <div id="successMessage" class="hidden text-green-600 font-medium"></div>
-        <div id="errorMessage" class="hidden text-red-600 font-medium"></div>
-        
-      
-        <!-- Full Name -->
-        <div>
-          <label for="email" class="block text-gray-700 font-medium">Email</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            required
-            pattern="^[\\w.-]+@(stud\\.)?noroff\\.no$"
-            title="Please enter a valid Noroff email address (stud.noroff.no or noroff.no)"
-            placeholder="Enter your email address"
-            class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-800"
-          />
-        </div>
-        
-        <!-- Full Name -->
-        <div>
-          <label for="name" class="block text-gray-700 font-medium">Full Name</label>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            required
-            pattern="^[a-zA-Z ]+$"
-            title="Full name should only contain letters and spaces"
-            placeholder="Enter your full name"
-            class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-800"
-          />
-        </div>
-
-        <!-- Bio -->
-        <div>
-          <label for="bio" class="block text-gray-700 font-medium">Bio</label>
-          <textarea
-            id="bio"
-            name="bio"
-            placeholder="Write something about yourself..."
-            rows="4"
-            class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-800"
-          ></textarea>
-        </div>
-
-        <!-- Save Button -->
-        <button
-          type="submit"
-          class="button-primary"
-        >
-          Save Changes
-        </button>
-      </form>
+    <!-- Nav Buttons -->
+    <div class="flex flex-wrap items-center gap-2 sm:gap-4">
+      <a href="/" class="button-secondary">Home</a>
+      <a href="/listings/index.html" class="button-secondary">Listings</a>
+      <a href="/profile/index.html" class="button-secondary hidden" id="profile-link">My Profile</a>
+      <a href="/auth/login/index.html" class="button-secondary" id="login-link">Login</a>
+      <a href="/auth/register/index.html" class="button-tertiary" id="register-link">Register</a>
+      <button id="logout-btn" class="button-secondary hidden">Logout</button>
     </div>
+  </nav>
+</header>
+
+
+  <!-- Main Profile Section -->
+  <main class="container mx-auto my-10">
+    <div class="bg-white p-8 rounded-lg shadow-md max-w-xl mx-auto text-center">
+      <h2 class="text-2xl font-bold text-blue-800 mb-4">My Profile</h2>
+      <p class="text-gray-700 mb-4">
+        <strong>Welcome,</strong> <span id="user-name" class="font-semibold">Loading...</span>
+      </p>
+
+      <!-- Avatar -->
+      <div class="flex flex-col items-center mb-6">
+        <img
+          src="/images/avatar2.png"
+          alt="User Avatar"
+          id="user-avatar"
+          class="rounded-full h-40 w-40 border-2 border-blue-800 mb-4 object-cover"
+        />
+        <button id="choose-avatar-btn" class="button-tertiary">Update Avatar</button>
+      </div>
+
+      <!-- Credits -->
+      <p class="text-blue-800 text-lg mb-4">
+        <strong>Credits:</strong> <span id="credits">Loading...</span>
+      </p>
+    </div>
+
+    <!-- Listings -->
+    <section class="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto mt-10">
+      <h3 class="text-xl font-bold text-blue-800 mb-4 text-center">My Listings</h3>
+      <div id="user-listings" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 text-left"></div>
+    </section>
   </main>
 
-   
-  <!-- Footer -->
-  <footer class="bg-burgundy text-white py-6">
-    <div class="container mx-auto text-center">
-      <p>&copy; 2024 The Golden Market. All rights reserved.</p>
-      <div class="flex justify-center space-x-6 mb-4">
-        <a href="/terms.html" class="hover:text-yellow-400">Terms of Service</a>
-        <span class="text-white">|</span>
-        <a href="/privacy.html" class="hover:text-yellow-400">Privacy Policy</a>
+  <!-- Avatar Modal -->
+  <div id="avatar-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
+      <h3 class="text-lg font-bold text-center text-blue-800 mb-4">Select an Avatar</h3>
+      <div class="grid grid-cols-3 gap-4">
+        <img src="/images/avatar1.png" data-avatar="/images/avatar1.png" class="cursor-pointer rounded-full h-24 w-24 border hover:border-blue-800" />
+        <img src="/images/avatar2.png" data-avatar="/images/avatar2.png" class="cursor-pointer rounded-full h-24 w-24 border hover:border-blue-800" />
+        <img src="/images/avatar3.png" data-avatar="/images/avatar3.png" class="cursor-pointer rounded-full h-24 w-24 border hover:border-blue-800" />
       </div>
-      <div class="flex justify-center space-x-6 mt-4">
-        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="hover:text-yellow-400">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="hover:text-yellow-400">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://github.com" target="_blank" aria-label="GitHub" class="hover:text-yellow-400">
-          <i class="fab fa-github"></i>
-        </a>
+      <div class="text-center mt-4">
+        <button id="close-modal-btn" class="button-danger">Cancel</button>
       </div>
     </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-burgundy text-white py-6 mt-10">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 The Golden Market. All rights reserved.</p>
+    </div>
   </footer>
-  <script type="module" src="/src/js/api/global/logout.js"></script>
-  <script type="module" src="/src/js/api/profile/profile.jss"></script>
+
 </body>
 </html>

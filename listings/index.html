@@ -3,36 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Listings</title>
-  <link rel="stylesheet" href="../src/css/styles.css" />
-  <link rel="stylesheet" href="../src/css/style.css" />
-  <script type="module" src="../src/js/api/listing/view.js" defer></script>
-  <script type="module" src="../src/js/api/listing/create.js" defer></script>
-  <script type="module" src="../src/js/api/global/logout.js" defer></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <title>Listings Dashboard | The Golden Market</title>
+  <link rel="stylesheet" href="/src/css/styles.css" />
+  <script type="module" src="/src/js/api/listing/view.js" defer></script>
+  <script type="module" src="/src/js/api/listing/create.js" defer></script>
+  <script type="module" src="/src/js/api/global/logout.js" defer></script>
 </head>
 <body class="bg-gray-100">
 
-  <!-- Header Section -->
-  <header class="bg-blue-800 text-white shadow-md">
+  <!-- Header -->
+  <header class="bg-blue-900 text-white shadow-md">
     <nav class="container mx-auto flex items-center justify-between py-4">
-      <div class="flex items-center space-x-3">
-        <img src="/images/treasure_17947595.png" alt="Treasure Chest Logo" class="h-10 w-10" />
-      </div>
-      <div class="flex-1 text-center">
-        <a href="/" class="text-gold font-meie-script text-3xl md:text-4xl hover:text-white transition-colors duration-300">
-          The Golden Market
-        </a>
-      </div>
-      <div class="flex items-center space-x-4">
-        <a href="/auth/login/index.html" class="button-secondary">Login</a>
-        <a href="/auth/register/index.html" class="button-tertiary">Register</a>
+      <a href="/" class="flex items-center space-x-3">
+        <img src="/images/treasure_17947595.png" alt="Treasure Chest Logo" class="h-10 w-10">
+        <h1 class="text-yellow-400 font-meie-script text-2xl">The Golden Market</h1>
+      </a>
+      <div class="flex space-x-4">
+        <a href="/profile/index.html" class="button-tertiary">My Profile</a>
+        <a href="#" id="logout-btn" class="button-secondary">Logout</a>
       </div>
     </nav>
   </header>
 
-  <!-- Search -->
-  <section class="mb-6 text-center mt-6">
+  <!-- Search Bar -->
+  <section class="mt-6 text-center">
     <input
       type="text"
       id="searchInput"
@@ -42,115 +36,51 @@
     <button id="searchButton" class="button-primary ml-2">Search</button>
   </section>
 
-  <!-- Main Content -->
-  <main class="container mx-auto my-10">
+  <!-- Create Listing Button -->
+  <section class="text-right container mx-auto mt-6">
+    <button id="toggle-form-btn" class="button-primary">
+      <i class="fas fa-plus-circle mr-2"></i> Create New Listing
+    </button>
+  </section>
 
-    <!-- Create Listing Button -->
-    <section class="text-right mb-6">
-      <button id="toggle-form-btn" class="button-primary inline-block">
-        <i class="fas fa-plus-circle"></i> Create New Listing
-      </button>
+  <!-- Create Listing Form -->
+  <section id="create-listing-form" class="hidden bg-white p-8 rounded shadow-md w-full max-w-lg mx-auto mt-6">
+    <form id="listing-form">
+      <div class="mb-4">
+        <label for="title">Title</label>
+        <input id="title" type="text" required />
+      </div>
+      <div class="mb-4">
+        <label for="description">Description</label>
+        <textarea id="description" required rows="4"></textarea>
+      </div>
+      <div class="mb-4">
+        <label for="media">Image URL (public)</label>
+        <input id="media" type="url" required placeholder="https://example.com/image.jpg" />
+      </div>
+      <div class="mb-4">
+        <label for="deadline">Deadline</label>
+        <input id="deadline" type="date" required />
+      </div>
+      <div class="flex justify-end space-x-4">
+        <button type="submit" class="button-primary">Create</button>
+        <button type="button" id="cancel-form-btn" class="button-secondary">Cancel</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Listings Grid -->
+  <main class="container mx-auto mt-10">
+    <section id="listings-grid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Listings inserted by JS -->
     </section>
-
-    <!-- Create Form -->
-    <section id="create-listing-form" class="hidden bg-white p-8 rounded shadow-md w-full max-w-lg mx-auto mb-8">
-      <form id="listing-form">
-        <div class="mb-4">
-          <label for="title" class="block text-gray-700">Title</label>
-          <input
-            id="title"
-            type="text"
-            name="title"
-            required
-            class="w-full p-2 border rounded focus:outline-blue-500"
-          />
-        </div>
-
-        <div class="mb-4">
-          <label for="description" class="block text-gray-700">Description</label>
-          <textarea
-            id="description"
-            name="description"
-            required
-            class="w-full p-2 border rounded focus:outline-blue-500"
-          ></textarea>
-        </div>
-
-        <div class="mb-4">
-          <label for="media" class="block text-gray-700">Media URL (public image)</label>
-          <input
-            id="media"
-            type="url"
-            placeholder="https://example.com/image.jpg"
-            required
-            class="w-full p-2 border rounded focus:outline-blue-500"
-          />
-        </div>
-
-        <div class="mb-4">
-          <label for="deadline" class="block text-gray-700">Deadline</label>
-          <input
-            id="deadline"
-            type="date"
-            name="deadline"
-            required
-            class="w-full p-2 border rounded focus:outline-blue-500"
-          />
-        </div>
-
-        <div class="flex space-x-4">
-          <button type="submit" class="button-primary flex-1">Create Listing</button>
-          <button type="button" id="cancel-form-btn" class="button-secondary w-full">Cancel</button>
-        </div>
-      </form>
-    </section>
-
-    <!-- Listings Grid -->
-    <section id="listings-grid" class="mx-auto w-3/4 max-w-screen-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Listings will be dynamically rendered here -->
-    </section>
-
+    <div id="pagination" class="flex justify-center mt-10 space-x-2"></div>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-burgundy text-white py-6 mt-10">
-    <div class="container mx-auto text-center">
-      <p>&copy; 2024 The Golden Market. All rights reserved.</p>
-      <div class="flex justify-center space-x-6 mb-4">
-        <a href="/terms.html" class="hover:text-yellow-400">Terms of Service</a>
-        <span class="text-white">|</span>
-        <a href="/privacy.html" class="hover:text-yellow-400">Privacy Policy</a>
-      </div>
-      <div class="flex justify-center space-x-6 mt-4">
-        <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="hover:text-yellow-400">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram" class="hover:text-yellow-400">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://github.com" target="_blank" aria-label="GitHub" class="hover:text-yellow-400">
-          <i class="fab fa-github"></i>
-        </a>
-      </div>
-    </div>
+  <footer class="bg-[#800020] text-white py-6 mt-10 text-center">
+    <p>&copy; 2024 The Golden Market. All rights reserved.</p>
   </footer>
 
-  <!-- Toggle & Cancel Logic -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const toggleButton = document.getElementById("toggle-form-btn");
-      const createForm = document.getElementById("create-listing-form");
-      const cancelFormButton = document.getElementById("cancel-form-btn");
-
-      toggleButton?.addEventListener("click", () => {
-        createForm.classList.toggle("hidden");
-      });
-
-      cancelFormButton?.addEventListener("click", () => {
-        createForm.classList.add("hidden");
-        document.getElementById("listing-form").reset();
-      });
-    });
-  </script>
 </body>
 </html>

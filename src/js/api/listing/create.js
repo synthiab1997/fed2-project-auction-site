@@ -1,71 +1,65 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const listingForm = document.getElementById("listing-form");
-  const toggleButton = document.getElementById("toggle-form-btn");
-  const cancelFormButton = document.getElementById("cancel-form-btn");
-  const createFormSection = document.getElementById("create-listing-form");
+  const form = document.getElementById("listing-form");
+  const cancelBtn = document.getElementById("cancel-btn");
+
   const token = localStorage.getItem("accessToken");
 
-  // Toggle form visibility
-  toggleButton?.addEventListener("click", () => {
-    createFormSection.classList.toggle("hidden");
-    listingForm.reset();
-    listingForm.removeAttribute("data-edit-id");
-  });
+  if (!token) {
+    window.location.href = "/auth/login/index.html";
+    return;
+  }
 
-  // Cancel button
-  cancelFormButton?.addEventListener("click", () => {
-    listingForm.reset();
-    createFormSection.classList.add("hidden");
-    listingForm.removeAttribute("data-edit-id");
-  });
-
-  // Form submit
-  listingForm?.addEventListener("submit", async (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const title = document.getElementById("title").value.trim();
     const description = document.getElementById("description").value.trim();
-    const mediaUrl = document.getElementById("media").value.trim();
-    const endsAt = new Date(document.getElementById("deadline").value).toISOString();
+    const mediaInputs = document.getElementById("media").value.trim(); // expected to be URL
+    const endsAtRaw = document.getElementById("deadline").value;
+
+    if (!title || !endsAtRaw || !mediaInputs) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    const endsAt = new Date(endsAtRaw).toISOString();
+    const media = [{ url: mediaInputs, alt: title }];
 
     const payload = {
       title,
       description,
       endsAt,
-      media: [{ url: mediaUrl, alt: title }]
+      media,
     };
 
-    const isEdit = listingForm.dataset.editId;
-    const url = isEdit
-      ? `https://v2.api.noroff.dev/auction/listings/${isEdit}`
-      : "https://v2.api.noroff.dev/auction/listings";
-
-    const method = isEdit ? "PUT" : "POST";
-
     try {
-      const res = await fetch(url, {
-        method,
+      const res = await fetch("https://v2.api.noroff.dev/auction/listings", {
+        method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
+      const json = await res.json();
 
       if (res.ok) {
-        alert(isEdit ? "Listing updated!" : "Listing created!");
-        listingForm.reset();
-        listingForm.removeAttribute("data-edit-id");
-        createFormSection.classList.add("hidden");
-        location.reload();
+        alert("Listing created successfully!");
+        form.reset();
+        window.location.href = "/listings/index.html";
       } else {
-        alert(data.errors?.[0]?.message || "Operation failed.");
+        alert(json.errors?.[0]?.message || "Failed to create listing.");
       }
     } catch (err) {
-      console.error("Error submitting form:", err);
-      alert("Something went wrong.");
+      console.error("Error creating listing:", err);
+      alert("Network error. Please try again later.");
     }
+  });
+
+  // Cancel button
+  cancelBtn?.addEventListener("click", () => {
+    form.reset();
+    window.location.href = "/listings/index.html";
   });
 });

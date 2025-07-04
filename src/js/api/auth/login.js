@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = form.email.value.trim();
     const password = form.password.value.trim();
 
+    errorMessages.textContent = "";
+    successMessages.textContent = "";
+
     try {
       const res = await fetch("https://v2.api.noroff.dev/auth/login", {
         method: "POST",
@@ -16,18 +19,28 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({ email, password })
       });
 
-      const data = await res.json();
+      const json = await res.json();
 
       if (res.ok) {
-        localStorage.setItem("accessToken", data.data.accessToken);
-        localStorage.setItem("name", data.data.name);
+        const { accessToken, name } = json.data;
+
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("name", name);
+
         successMessages.textContent = "Login successful! Redirecting...";
-        setTimeout(() => (window.location.href = "/"), 1000);
+
+
+        // Optional: Redirect to previous page or default to listings
+        const lastPage = localStorage.getItem("lastPage");
+        setTimeout(() => {
+          window.location.href = lastPage || "/listings/index.html";
+        }, 1000);
       } else {
-        errorMessages.textContent = data.errors?.[0]?.message || "Login failed.";
+        errorMessages.textContent = json.errors?.[0]?.message || "Invalid credentials. Please try again.";
       }
-    } catch {
-      errorMessages.textContent = "Network error.";
+    } catch (error) {
+      errorMessages.textContent = "Network error. Please try again later.";
+      console.error(error);
     }
   });
 });
