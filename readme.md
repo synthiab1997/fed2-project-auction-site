@@ -4,7 +4,7 @@ A fully functional auction website built as part of the Front-End Development 2 
 The project allows users to register, log in, create auction listings, bid on items, and manage their profile, using the official Noroff Auction API.
 
 🌍 Live Demo
-
+the-golden-market.netlify.app
 
 📌 Project Goal
 
