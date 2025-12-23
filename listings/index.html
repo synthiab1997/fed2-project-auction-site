@@ -2,85 +2,149 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Listings Dashboard | The Golden Market</title>
-  <link rel="stylesheet" href="/src/css/styles.css" />
-  <script type="module" src="/src/js/api/listing/view.js" defer></script>
-  <script type="module" src="/src/js/api/listing/create.js" defer></script>
-  <script type="module" src="/src/js/api/global/logout.js" defer></script>
-</head>
-<body class="bg-gray-100">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listings | The Golden Market</title>
 
+  <link rel="stylesheet" href="/src/css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+
+  <script type="module" src="/src/js/api/global/logout.js" defer></script>
+  <script type="module" src="/src/js/api/listings/listings.js" defer></script>
+</head>
+
+<body class="bg-blue-800 text-white min-h-screen flex flex-col">
   <!-- Header -->
-  <header class="bg-blue-900 text-white shadow-md">
-    <nav class="container mx-auto flex items-center justify-between py-4">
-      <a href="/" class="flex items-center space-x-3">
-        <img src="/images/treasure_17947595.png" alt="Treasure Chest Logo" class="h-10 w-10">
-        <h1 class="text-yellow-400 font-meie-script text-2xl">The Golden Market</h1>
+  <header class="bg-blue-900 text-white shadow-lg">
+    <nav class="container mx-auto flex flex-wrap items-center justify-between gap-4 py-4">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/images/treasure_17947595.png" alt="The Golden Market logo" class="h-10 w-10" />
+        <span class="text-gold font-meie-script text-2xl md:text-3xl">The Golden Market</span>
       </a>
-      <div class="flex space-x-4">
-        <a href="/profile/index.html" class="button-tertiary">My Profile</a>
-        <a href="#" id="logout-btn" class="button-secondary">Logout</a>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <a href="/listings/index.html" class="button-light text-sm md:text-base">Browse listings</a>
+
+        <a href="/profile/index.html" id="profile-link" class="button-secondary text-sm md:text-base hidden">
+          My profile
+        </a>
+
+        <a href="/auth/login/index.html" id="login-link" class="button-secondary text-sm md:text-base">
+          Login
+        </a>
+
+        <a href="/auth/register/index.html" id="register-link" class="button-tertiary text-sm md:text-base">
+          Register
+        </a>
+
+        <button id="logout-btn" class="button-primary text-sm md:text-base hidden">Logout</button>
       </div>
     </nav>
   </header>
 
-  <!-- Search Bar -->
-  <section class="mt-6 text-center">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Search listings..."
-      class="w-2/3 p-2 rounded border shadow-sm focus:outline-blue-600"
-    />
-    <button id="searchButton" class="button-primary ml-2">Search</button>
+  <!-- Content -->
+  <main class="flex-1">
+
+  <!-- SEARCH + FILTER BAR -->
+  <section class="container mx-auto px-4 pt-10">
+    <div class="bg-blue-900/60 rounded-2xl shadow-lg p-6 md:p-8 space-y-6">
+
+      <!-- Title -->
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <h1 class="text-2xl md:text-3xl font-bold">Browse listings</h1>
+
+        <a
+          href="/listings/create/index.html"
+          id="create-listing-link"
+          class="button-tertiary hidden w-auto"
+        >
+          + Create listing
+        </a>
+      </div>
+
+      <!-- Search -->
+      <form
+        id="search-form"
+        class="flex flex-col sm:flex-row gap-3"
+        aria-label="Search listings"
+      >
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search by title or description…"
+          class="flex-1 p-2 rounded border border-gray-300 text-blue-900"
+        />
+
+        <button type="submit" class="button-primary w-auto">
+          Search
+        </button>
+
+        <button
+          type="button"
+          id="clear-search"
+          class="button-secondary w-auto"
+        >
+          Clear
+        </button>
+      </form>
+
+      <!-- Filters -->
+      <div class="flex flex-wrap gap-4 items-center text-sm">
+
+        <!-- Sort -->
+        <select
+          id="sort-select"
+          class="p-2 rounded text-blue-900"
+        >
+          <option value="">Sort by</option>
+          <option value="ends-soon">Ending soon</option>
+          <option value="ends-late">Ending later</option>
+          <option value="bids-high">Most bids</option>
+        </select>
+
+        <!-- Filters -->
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="filter-hot" />
+          🔥 Hot (5+ bids)
+        </label>
+
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="filter-soon" />
+          ⏰ Ending soon
+        </label>
+      </div>
+
+      <!-- Messages -->
+      <p id="listings-error" class="text-red-200"></p>
+      <p id="listings-empty" class="text-white/80"></p>
+    </div>
   </section>
 
-  <!-- Create Listing Button -->
-  <section class="text-right container mx-auto mt-6">
-    <button id="toggle-form-btn" class="button-primary">
-      <i class="fas fa-plus-circle mr-2"></i> Create New Listing
-    </button>
+  <!-- LISTINGS GRID -->
+  <section class="container mx-auto px-4 py-10">
+    <div
+      id="listings-grid"
+      class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      <p class="col-span-full text-center text-white/80">
+        Loading listings…
+      </p>
+    </div>
   </section>
 
-  <!-- Create Listing Form -->
-  <section id="create-listing-form" class="hidden bg-white p-8 rounded shadow-md w-full max-w-lg mx-auto mt-6">
-    <form id="listing-form">
-      <div class="mb-4">
-        <label for="title">Title</label>
-        <input id="title" type="text" required />
-      </div>
-      <div class="mb-4">
-        <label for="description">Description</label>
-        <textarea id="description" required rows="4"></textarea>
-      </div>
-      <div class="mb-4">
-        <label for="media">Image URL (public)</label>
-        <input id="media" type="url" required placeholder="https://example.com/image.jpg" />
-      </div>
-      <div class="mb-4">
-        <label for="deadline">Deadline</label>
-        <input id="deadline" type="date" required />
-      </div>
-      <div class="flex justify-end space-x-4">
-        <button type="submit" class="button-primary">Create</button>
-        <button type="button" id="cancel-form-btn" class="button-secondary">Cancel</button>
-      </div>
-    </form>
-  </section>
+  <div
+  id="pagination"
+  class="flex justify-center items-center gap-2 mt-10"
+></div>
 
-  <!-- Listings Grid -->
-  <main class="container mx-auto mt-10">
-    <section id="listings-grid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-      <!-- Listings inserted by JS -->
-    </section>
-    <div id="pagination" class="flex justify-center mt-10 space-x-2"></div>
-  </main>
+
+</main>
+
 
   <!-- Footer -->
-  <footer class="bg-[#800020] text-white py-6 mt-10 text-center">
-    <p>&copy; 2024 The Golden Market. All rights reserved.</p>
+  <footer class="bg-blue-900 text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 The Golden Market. All rights reserved.</p>
+    </div>
   </footer>
-
 </body>
 </html>

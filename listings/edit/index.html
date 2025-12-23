@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Listing | The Golden Market</title>
+
+  <link rel="stylesheet" href="/src/css/styles.css" />
+  <script type="module" src="/src/js/api/global/logout.js" defer></script>
+  <script type="module" src="/src/js/api/listings/edit.js" defer></script>
+</head>
+
+<body class="bg-blue-800 text-white min-h-screen flex flex-col">
+  <header class="bg-blue-900 text-white shadow-lg">
+    <nav class="container mx-auto flex flex-wrap items-center justify-between gap-4 py-4">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/images/treasure_17947595.png" class="h-10 w-10" alt="Logo" />
+        <span class="text-gold font-meie-script text-2xl md:text-3xl">The Golden Market</span>
+      </a>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <a href="/listings/index.html" class="button-light">Browse listings</a>
+        <a href="/profile/index.html" class="button-secondary">Profile</a>
+        <button id="logout-btn" class="button-primary hidden">Logout</button>
+
+        <div class="hidden">
+          <a href="/auth/login/index.html" id="login-link">Login</a>
+          <a href="/auth/register/index.html" id="register-link">Register</a>
+          <a href="/profile/index.html" id="profile-link">Profile</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container mx-auto px-4 py-10 flex-1">
+    <div class="max-w-2xl mx-auto bg-white text-blue-900 rounded-xl shadow-lg p-6">
+      <h1 class="text-2xl font-bold mb-4">Edit listing</h1>
+
+      <p id="edit-error" class="text-red-600 text-sm mb-2"></p>
+      <p id="edit-success" class="text-green-600 text-sm mb-2"></p>
+
+      <form id="edit-form" class="space-y-4">
+        <div>
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text" required maxlength="60" />
+        </div>
+
+        <div>
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="5" required></textarea>
+        </div>
+
+        <div>
+          <label for="media">Image URL</label>
+          <input id="media" name="media" type="url" required />
+        </div>
+
+        <div class="flex gap-2 justify-end pt-2">
+          <a href="/profile/index.html" class="button-tertiary">Cancel</a>
+          <button type="submit" class="button-primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="bg-blue-900 text-white py-6 text-center">
+    <p>&copy; 2024 The Golden Market</p>
+  </footer>
+</body>
+</html>

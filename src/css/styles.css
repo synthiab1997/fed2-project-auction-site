@@ -6,157 +6,325 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ========== Global ========== */
-body {
-  @apply bg-gray-100 text-blue-900 box-border m-0;
+/* Base*/
+html {
+  box-sizing: border-box;
 }
-
 *,
 *::before,
 *::after {
   box-sizing: inherit;
 }
 
-/* ========== Header ========== */
+body {
+  margin: 0;
+}
+html, body {
+  min-height: 100%;
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-gold {
+    color: #FFC107;
+  }
+
+  .font-meie-script {
+    font-family: 'Meie Script', cursive;
+  }
+}
+
+/* Components */
+@layer components {
+  /* Brand */
+  .brand-title {
+    @apply text-gold font-meie-script text-2xl md:text-3xl hover:text-white transition-colors;
+  }
+
+  /* Navigation */
+  .nav-link {
+    @apply text-white/90 hover:text-white px-2 py-1 rounded transition;
+  }
+
+  /* Buttons */
+  .button-primary {
+    @apply bg-blue-900 text-white px-4 py-2 rounded font-bold transition
+      hover:bg-[#123456]
+      focus:outline-none focus:ring-2 focus:ring-blue-900
+      active:scale-95;
+  }
+
+  .button-secondary {
+    @apply bg-yellow-400 text-blue-900 px-4 py-2 rounded border-2 border-yellow-400 font-bold transition
+      hover:bg-yellow-500
+      focus:outline-none focus:ring-2 focus:ring-yellow-400
+      active:scale-95;
+  }
+
+  .button-tertiary {
+    @apply bg-yellow-400 text-white px-4 py-2 rounded border-2 border-[#800020] font-bold transition
+      hover:bg-yellow-500 hover:text-blue-900
+      focus:outline-none focus:ring-2 focus:ring-yellow-400
+      active:scale-95;
+  }
+
+  .button-light {
+    @apply bg-white text-blue-900 px-4 py-2 rounded font-bold transition
+      hover:bg-yellow-400
+      focus:outline-none focus:ring-2 focus:ring-yellow-400
+      active:scale-95;
+  }
+
+  .button-danger {
+    @apply bg-[#800020] text-white px-4 py-2 rounded font-bold transition
+      hover:bg-[#6a001a]
+      focus:outline-none focus:ring-2 focus:ring-[#800020]
+      active:scale-95;
+  }
+
+  /* Forms */
+  .form-container {
+    @apply bg-white p-8 rounded-2xl shadow-lg w-full max-w-2xl mx-auto;
+  }
+
+  .helper-text {
+    @apply text-xs text-gray-500;
+  }
+
+  /* Generic card */
+  .card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden;
+  }
+
+  /* 
+     Listing cards
+   */
+  .listing-card {
+    @apply bg-white text-blue-900 rounded-2xl shadow-md overflow-hidden
+      flex flex-col transition duration-200
+      hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .listing-card h2 {
+    @apply text-blue-900;
+  }
+
+  .listing-card p {
+    @apply text-gray-700;
+  }
+
+  .listing-meta {
+    @apply text-gray-600 text-xs;
+  }
+
+  /* Image wrapper — FIXED HEIGHT */
+  .listing-image-wrapper {
+    @apply w-full h-56 bg-gray-100 overflow-hidden;
+  }
+
+  .listing-image-wrapper img {
+    @apply w-full h-full object-cover object-center;
+  }
+
+  /* Single listing image */
+  .single-main-image {
+    @apply w-full h-72 md:h-96 object-cover bg-gray-200;
+  }
+
+  /* Badges */
+  .badge {
+    @apply text-xs font-bold px-2 py-1 rounded-full whitespace-nowrap;
+  }
+
+  .badge-soon {
+    @apply bg-red-600 text-white;
+  }
+
+  .badge-hot {
+    @apply bg-yellow-400 text-blue-900;
+  }
+}
+
+/* Header / Footer */
 header {
-  @apply bg-blue-900 text-white z-10 relative;
+  @apply bg-blue-900 text-white relative z-10;
 }
 
 header nav {
-  @apply relative h-full py-4;
+  @apply container mx-auto flex flex-wrap items-center justify-between gap-4 py-4 px-4;
 }
 
 header img {
   @apply h-10 w-10;
 }
 
-header h1 {
-  @apply absolute left-1/2 transform -translate-x-1/2 text-yellow-400 font-meie-script hover:text-white transition-colors;
-}
+/*footer {
+  @apply bg-blue-900 text-white py-6 text-center;
+}*/
 
-.button-secondary {
-  @apply bg-white text-blue-900 font-bold px-4 py-2 rounded hover:opacity-90;
-}
-
-.button-tertiary {
-  @apply bg-yellow-400 text-black font-bold px-4 py-2 rounded hover:opacity-90;
-}
-
-/* ========== Footer ========== */
-footer {
-  @apply bg-[#800020] text-white py-6 text-center;
-}
+footer { @apply bg-blue-900 }
 
 footer a {
   @apply hover:text-yellow-400 transition;
 }
 
-/* ========== Buttons ========== */
-.button-primary {
-  @apply bg-blue-900 text-white px-4 py-2 rounded font-bold text-center cursor-pointer transition hover:bg-[#123456] focus:outline-blue-900 focus:ring-2 focus:ring-blue-900 active:scale-95;
-}
-
-.button-secondary {
-  @apply bg-yellow-400 text-blue-900 px-4 py-2 rounded border-2 border-yellow-400 font-bold transition hover:bg-yellow-500 active:scale-95;
-}
-
-.button-tertiary {
-  @apply bg-yellow-400 text-white px-4 py-2 rounded border-2 border-[#800020] font-bold transition hover:bg-yellow-500 hover:text-blue-900 active:scale-95;
-}
-
-.button-danger {
-  @apply bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500 transition;
-}
-
-/* ========== Forms ========== */
-input, textarea {
-  @apply w-full p-2 border border-gray-300 rounded focus:outline-blue-900;
+/* Inputs */
+input,
+textarea {
+  @apply w-full p-2 border border-gray-300 rounded
+  text-blue-900 bg-white
+  focus:outline-none focus:ring-2 focus:ring-blue-900;
 }
 
 label {
-  @apply block text-gray-700 mb-2;
+  @apply block text-gray-700 mb-2 font-semibold;
+}
+.bg-blue-800 label,
+.bg-blue-900 label,
+.bg-blue-900\/70 label {
+  color: rgba(255,255,255,0.9);
 }
 
-.form-container {
-  @apply bg-white p-8 rounded shadow-md w-full max-w-md mx-auto z-10 flex flex-col justify-center;
-}
-
-#errorMessages {
-  @apply text-red-600 text-center mt-4;
-}
-
-#successMessages {
-  @apply text-green-600 text-center mt-4;
-}
-
-/* ========== Login/Register ========== */
-main .backdrop {
-  @apply absolute inset-0 bg-blue-900 bg-opacity-50 backdrop-blur-md z-0;
-}
-
-/* ========== Listings ========== */
-.card {
-  @apply bg-white rounded-lg shadow-md overflow-hidden;
-}
-
-.card img {
-  @apply w-full h-48 object-cover;
-}
-
-.card .card-content {
-  @apply p-4;
-}
-
-/* ========== Listing Grid ========== */
+/* Listings page helpers */
 #listings-grid {
-  @apply grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-auto w-11/12 max-w-screen-xl;
+  @apply grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mx-auto
+    w-full max-w-screen-xl;
 }
 
-/* ========== Search Bar ========== */
-#searchInput {
-  @apply w-2/3 p-2 rounded border shadow-sm focus:outline-blue-600;
+#search-input {
+  @apply w-full p-2 rounded border shadow-sm
+    focus:outline-none focus:ring-2 focus:ring-blue-900;
 }
 
-/* ========== Pagination ========== */
+/* Pagination */
 .pagination-button {
-  @apply bg-blue-900 text-white px-4 py-2 rounded cursor-pointer transition hover:bg-blue-700;
+  @apply bg-blue-900 text-white px-4 py-2 rounded transition hover:bg-blue-700;
 }
 
 .pagination-button.active {
   @apply bg-[#123456];
 }
 
-/* ========== Homepage Banner ========== */
-.banner {
-  @apply relative h-64 bg-cover bg-center;
+/* Messages */
+#errorMessages,
+#create-error,
+#edit-error,
+#single-error,
+#profile-error,
+#bid-error {
+  @apply text-red-600 text-sm;
 }
 
-.banner-overlay {
-  @apply absolute inset-0 bg-black bg-opacity-50;
+#successMessages,
+#create-success,
+#edit-success,
+#bid-success {
+  @apply text-green-700 text-sm;
 }
 
-.text-container {
-  @apply max-w-xl mx-auto text-center z-10 relative;
+/* Countdown */
+.countdown {
+  @apply text-sm font-semibold;
 }
 
-.text-container h1 {
-  @apply text-2xl font-bold text-white mb-2;
+.countdown-normal {
+  @apply text-blue-900;
 }
 
-.text-container p {
-  @apply text-base text-gray-200 mb-4;
+.countdown-soon {
+  @apply text-red-600;
 }
 
-/* ========== Font Customization ========== */
-
-.font-meie-script {
-  font-family: 'Meie Script', cursive;
+.countdown-ended {
+  @apply text-gray-400 line-through;
 }
 
-.text-gold {
-  color: #FFC107;
+/*debug option*/
+.form-container {
+  position: relative;
+  z-index: 20;
+}
+.hidden {
+  display: none !important;
 }
 
-.hover\:text-white:hover {
-  color: #FFFFFF;
+.flex {
+  display: flex !important;
+}
+
+/* Avatar picker (Profile)*/
+
+#avatar-picker {
+  background-color: #f8fafc; /* gris très clair */
+  border: 1px solid rgba(30, 58, 138, 0.15); /* bleu subtil */
+  border-radius: 1rem;
+}
+
+#avatar-picker h3 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+#avatar-picker img {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#avatar-picker img:hover {
+  transform: scale(1.05);
+}
+
+#avatar-picker {
+  box-shadow: inset 0 0 0 1px rgba(30, 58, 138, 0.05);
+}
+
+/* ================================
+   Auth pages (Login / Register)
+================================ */
+
+.auth-wrapper {
+  @apply min-h-screen flex items-center justify-center bg-blue-900 relative;
+}
+
+.auth-overlay {
+  @apply absolute inset-0 bg-blue-900/70 backdrop-blur-sm;
+}
+
+.auth-card {
+  @apply relative z-10 bg-white text-blue-900 rounded-2xl shadow-xl
+         w-full max-w-md p-8 md:p-10;
+}
+
+.auth-title {
+  @apply text-2xl font-bold text-center mb-2;
+}
+
+.auth-subtitle {
+  @apply text-center text-gray-500 text-sm mb-6;
+}
+
+.auth-form {
+  @apply flex flex-col gap-4;
+}
+
+.auth-form label {
+  @apply text-sm font-semibold text-blue-900;
+}
+
+.auth-form input {
+  @apply w-full p-3 rounded-lg border border-gray-300
+         focus:outline-none focus:ring-2 focus:ring-blue-900;
+}
+
+.auth-divider {
+  @apply my-6 border-t text-center text-sm text-gray-500;
+}
+
+.auth-footer {
+  @apply text-center text-sm text-gray-600 mt-6;
+}
+
+.auth-footer a {
+  @apply text-blue-900 font-semibold hover:underline;
 }

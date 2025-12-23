@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const renderListings = (listings) => {
       listingsGrid.innerHTML = listings
         .map((listing) => {
-          const media = listing.media?.[0]?.url || "/images/placeholder.jpg";
+          const media = listing.media?.[0]?.url || "images/painting img.jpeg";
           return `
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
               <img src="${media}" alt="${listing.title}" class="w-full h-48 object-cover" />

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listing | The Golden Market</title>
+
+  <link rel="stylesheet" href="/src/css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+
+  <script type="module" src="/src/js/api/global/logout.js" defer></script>
+  <script type="module" src="/src/js/api/listings/single.js" defer></script>
+</head>
+
+<body class="bg-blue-800 text-white min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-blue-900 text-white shadow-lg">
+    <nav class="container mx-auto flex flex-wrap items-center justify-between gap-4 py-4">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/images/treasure_17947595.png" alt="The Golden Market logo" class="h-10 w-10" />
+        <span class="text-gold font-meie-script text-2xl md:text-3xl">The Golden Market</span>
+      </a>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <a href="/listings/index.html" class="button-light text-sm md:text-base">Browse</a>
+
+        <a href="/profile/index.html" id="profile-link" class="button-secondary text-sm md:text-base hidden">
+          My profile
+        </a>
+
+        <a href="/auth/login/index.html" id="login-link" class="button-secondary text-sm md:text-base">
+          Login
+        </a>
+
+        <a href="/auth/register/index.html" id="register-link" class="button-tertiary text-sm md:text-base">
+          Register
+        </a>
+
+        <button id="logout-btn" class="button-primary text-sm md:text-base hidden">Logout</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1 container mx-auto px-4 py-10">
+    <p id="single-error" class="text-red-200 mb-4" aria-live="polite"></p>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+      <!-- Image -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <img id="listing-image" class="single-main-image" alt="Listing image" />
+      </div>
+
+      <!-- Info -->
+      <div class="bg-white text-blue-900 rounded-xl shadow-md p-6">
+        <h1 id="listing-title" class="text-2xl md:text-3xl font-bold">Loading...</h1>
+        <p id="listing-description" class="text-gray-700 mt-3">Loading description...</p>
+
+        <div class="mt-4 text-sm text-gray-600 flex flex-col gap-1">
+          <p><strong>Ends:</strong> <span id="listing-ends">...</span></p>
+          <p><strong>Total bids:</strong> <span id="listing-bids-count">0</span></p>
+          <p><strong>Highest bid:</strong> <span id="listing-highest-bid">0</span></p>
+        </div>
+
+        <!-- Bid form -->
+        <div class="mt-6 border-t pt-5">
+          <h2 class="font-bold text-lg">Place a bid</h2>
+
+          <p id="bid-info" class="text-sm text-gray-600 mt-1"></p>
+          <p id="bid-error" class="text-sm text-red-600 mt-2" aria-live="polite"></p>
+          <p id="bid-success" class="text-sm text-green-700 mt-2" aria-live="polite"></p>
+
+          <form id="bid-form" class="mt-3 flex flex-col sm:flex-row gap-2">
+            <input
+              type="number"
+              id="bid-amount"
+              min="1"
+              step="1"
+              class="flex-1 p-2 rounded border border-gray-300 focus:outline-blue-800"
+              placeholder="Enter amount"
+              required
+            />
+            <button type="submit" class="button-primary">Bid</button>
+          </form>
+
+          <p class="text-xs text-gray-500 mt-2">
+            You must be logged in to bid.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bids list -->
+    <section class="mt-10 bg-blue-900/60 rounded-2xl p-6 shadow-lg">
+      <h2 class="text-xl font-bold">Bids</h2>
+      <p class="text-white/80 text-sm mt-1">Most recent bids are shown first.</p>
+
+      <div id="bids-list" class="mt-4 grid gap-3">
+        <p class="text-white/80">Loading bids...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-blue-900 text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 The Golden Market. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

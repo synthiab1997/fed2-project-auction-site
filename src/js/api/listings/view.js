@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const renderListings = (listings) => {
     listingsGrid.innerHTML = listings.map(listing => {
-      const media = listing.media?.[0]?.url || "/images/placeholder.jpg";
+      const media = listing.media?.[0]?.url || "images/painting img.jpeg";
       const isOwner = listing.seller?.name === currentUser;
 
       return `

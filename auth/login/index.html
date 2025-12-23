@@ -26,16 +26,16 @@
   </header>
 
   <!-- Main Content -->
-  <main class="min-h-screen flex items-center justify-center relative">
-    <!-- Blurry background -->
-    <div class="absolute inset-0 bg-blue-900 bg-opacity-50 backdrop-blur-sm z-0"></div>
-
-    <!-- Login Form -->
-    <section class="form-container z-10 bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-      <h2 class="text-xl font-bold text-center text-gray-800 mb-4">Welcome Back</h2>
-
-      <form id="login-form" class="space-y-4">
-        <!-- Email -->
+  <main class="auth-wrapper">
+    <div class="auth-overlay"></div>
+  
+    <section class="auth-card">
+      <h2 class="auth-title">Welcome back</h2>
+      <p class="auth-subtitle">
+        Log in to continue bidding on exclusive items
+      </p>
+  
+      <form id="login-form" class="auth-form">
         <div>
           <label for="email">Email</label>
           <input
@@ -43,12 +43,10 @@
             name="email"
             type="email"
             required
-            pattern="^[\\w\\-.]+@(stud\\.)?noroff\\.no$"
             placeholder="you@stud.noroff.no"
           />
         </div>
-
-        <!-- Password -->
+  
         <div>
           <label for="password">Password</label>
           <input
@@ -56,26 +54,25 @@
             name="password"
             type="password"
             required
-            minlength="8"
             placeholder="••••••••"
           />
         </div>
-
-        <!-- Submit -->
-        <button type="submit" class="button-primary w-full">Login</button>
-
-        <!-- Feedback -->
-        <div id="errorMessages" class="text-red-600 mt-2"></div>
-        <div id="successMessages" class="text-green-600 mt-2"></div>
+  
+        <button type="submit" class="button-primary w-full mt-2">
+          Login
+        </button>
+  
+        <p id="errorMessages" class="text-red-600 text-sm"></p>
+        <p id="successMessages" class="text-green-600 text-sm"></p>
       </form>
-
-      <!-- Link to register -->
-      <p class="form-link text-center mt-6 text-sm text-gray-600">
+  
+      <div class="auth-footer">
         Don’t have an account?
-        <a href="/auth/register/index.html" class="text-blue-600 underline">Register</a>
-      </p>
+        <a href="/auth/register/index.html">Register</a>
+      </div>
     </section>
   </main>
+  
 
   <!-- Footer -->
   <footer class="bg-[#800020] text-white py-6 mt-10 text-center">

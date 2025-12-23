@@ -4,89 +4,171 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Profile | The Golden Market</title>
+
   <link rel="stylesheet" href="/src/css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+
   <script type="module" src="/src/js/api/global/logout.js" defer></script>
   <script type="module" src="/src/js/api/profile/profile.js" defer></script>
   <script type="module" src="/src/js/api/profile/avatar.js" defer></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 </head>
-<body class="bg-gray-100">
 
- <!-- Header -->
-<header class="bg-blue-800 text-white shadow-md">
-  <nav class="container mx-auto flex flex-wrap items-center justify-between py-4">
-    <!-- Logo -->
-    <a href="/" class="flex items-center space-x-2">
-      <img src="/images/treasure_17947595.png" alt="Logo" class="h-10 w-10">
-      <h1 class="text-gold font-meie-script text-3xl">The Golden Market</h1>
-    </a>
+<body class="bg-blue-800 text-white min-h-screen flex flex-col">
+  <header class="bg-blue-900 text-white shadow-lg">
+    <nav class="container mx-auto flex flex-wrap items-center justify-between gap-4 py-4 px-4">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/images/treasure_17947595.png" class="h-10 w-10" alt="Logo" />
+        <span class="text-gold font-meie-script text-2xl md:text-3xl">The Golden Market</span>
+      </a>
 
-    <!-- Nav Buttons -->
-    <div class="flex flex-wrap items-center gap-2 sm:gap-4">
-      <a href="/" class="button-secondary">Home</a>
-      <a href="/listings/index.html" class="button-secondary">Listings</a>
-      <a href="/profile/index.html" class="button-secondary hidden" id="profile-link">My Profile</a>
-      <a href="/auth/login/index.html" class="button-secondary" id="login-link">Login</a>
-      <a href="/auth/register/index.html" class="button-tertiary" id="register-link">Register</a>
-      <button id="logout-btn" class="button-secondary hidden">Logout</button>
-    </div>
-  </nav>
-</header>
+      <div class="flex flex-wrap items-center gap-2">
+        <a href="/listings/index.html"  class="button-light text-sm md:text-base"> <i class="fa-solid fa-gavel"></i> Browse</a>
+        <a href="/listings/create/index.html" class="button-tertiary text-sm md:text-base">Create</a>
+        <button id="logout-btn" class="button-primary text-sm md:text-base hidden">Logout</button>
 
+        <div class="hidden">
+          <a href="/auth/login/index.html" id="login-link">Login</a>
+          <a href="/auth/register/index.html" id="register-link">Register</a>
+          <a href="/profile/index.html" id="profile-link">Profile</a>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-  <!-- Main Profile Section -->
-  <main class="container mx-auto my-10">
-    <div class="bg-white p-8 rounded-lg shadow-md max-w-xl mx-auto text-center">
-      <h2 class="text-2xl font-bold text-blue-800 mb-4">My Profile</h2>
-      <p class="text-gray-700 mb-4">
-        <strong>Welcome,</strong> <span id="user-name" class="font-semibold">Loading...</span>
+  <main class="container mx-auto px-4 py-10 flex-1">
+    <p id="profile-error" class="text-center text-red-200 mb-6"></p>
+
+    <!-- =PROFILE CARD =-->
+<section class="bg-white text-blue-900 rounded-2xl shadow-lg p-6 max-w-5xl mx-auto">
+
+  <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 items-start">
+
+    <!-- LEFT: Avatar + infos -->
+    <div class="flex flex-col items-center md:items-start text-center md:text-left">
+
+      <img
+        id="user-avatar"
+        class="rounded-full h-36 w-36 border-4 border-blue-900 object-cover bg-gray-200"
+        alt="User avatar"
+      />
+
+      <button
+        id="choose-avatar-btn"
+        class="button-tertiary mt-3 text-sm"
+        type="button"
+      >
+        Change avatar
+      </button>
+
+      <h1 class="text-2xl font-bold mt-6">My Profile</h1>
+      <p class="text-gray-600 mt-1">
+        Logged in as
+        <span id="user-name" class="font-semibold">Loading...</span>
       </p>
 
-      <!-- Avatar -->
-      <div class="flex flex-col items-center mb-6">
-        <img
-          src="/images/avatar2.png"
-          alt="User Avatar"
-          id="user-avatar"
-          class="rounded-full h-40 w-40 border-2 border-blue-800 mb-4 object-cover"
-        />
-        <button id="choose-avatar-btn" class="button-tertiary">Update Avatar</button>
+      <div class="mt-4 bg-blue-900/5 border border-blue-900/10 rounded-xl p-4 w-full">
+        <p class="text-lg">
+          <strong>Credits:</strong>
+          <span id="credits">Loading...</span>
+        </p>
+        <p class="text-xs text-gray-500 mt-1">
+          Updated automatically after bids and sales
+        </p>
+      </div>
+    </div>
+
+    <!-- RIGHT: Avatar picker (hidden by default) -->
+    <div
+      id="avatar-picker"
+      class="hidden bg-blue-50 border border-blue-900/10 rounded-xl p-4"
+    >
+      <h3 class="font-bold text-blue-900 mb-3 text-sm">
+        Choose a new avatar
+      </h3>
+
+      <!-- preview = picsum, saved url = data-avatar -->
+      <div class="grid grid-cols-3 gap-6 justify-items-center">
+        <button type="button" data-avatar="https://picsum.photos/id/237/400/400" class="group">
+          <img
+            src="https://picsum.photos/id/237/200/200"
+            class="h-24 w-24 rounded-full border-4 border-transparent group-hover:border-blue-900 transition"
+            alt="Avatar 1"
+          />
+        </button>
+
+        <button type="button" data-avatar="https://picsum.photos/id/238/400/400" class="group">
+          <img
+            src="https://picsum.photos/id/238/200/200"
+            class="h-24 w-24 rounded-full border-4 border-transparent group-hover:border-blue-900 transition"
+            alt="Avatar 2"
+          />
+        </button>
+
+        <button type="button" data-avatar="https://picsum.photos/id/239/400/400" class="group">
+          <img
+            src="https://picsum.photos/id/239/200/200"
+            class="h-24 w-24 rounded-full border-4 border-transparent group-hover:border-blue-900 transition"
+            alt="Avatar 3"
+          />
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+    <!-- 2) My Listings -->
+    <section class="max-w-5xl mx-auto mt-8 bg-white text-blue-900 rounded-2xl shadow-lg p-6">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <h2 class="text-xl font-bold">My Listings</h2>
+        <a href="/listings/create/index.html" class="button-tertiary text-sm">+ New listing</a>
+      </div>
+      <div id="user-listings" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6"></div>
+    </section>
+
+    <!-- 3) My Bids -->
+    <section class="max-w-5xl mx-auto mt-8 bg-white text-blue-900 rounded-2xl shadow-lg p-6">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <h2 class="text-xl font-bold">My Bids</h2>
       </div>
 
-      <!-- Credits -->
-      <p class="text-blue-800 text-lg mb-4">
-        <strong>Credits:</strong> <span id="credits">Loading...</span>
-      </p>
-    </div>
+      <p id="bids-empty" class="text-gray-600 text-center mt-4"></p>
+      <p id="bids-error" class="text-red-600 text-center mt-2"></p>
 
-    <!-- Listings -->
-    <section class="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto mt-10">
-      <h3 class="text-xl font-bold text-blue-800 mb-4 text-center">My Listings</h3>
-      <div id="user-listings" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 text-left"></div>
+      <div id="user-bids" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6"></div>
     </section>
   </main>
 
   <!-- Avatar Modal -->
-  <div id="avatar-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
-      <h3 class="text-lg font-bold text-center text-blue-800 mb-4">Select an Avatar</h3>
-      <div class="grid grid-cols-3 gap-4">
-        <img src="/images/avatar1.png" data-avatar="/images/avatar1.png" class="cursor-pointer rounded-full h-24 w-24 border hover:border-blue-800" />
-        <img src="/images/avatar2.png" data-avatar="/images/avatar2.png" class="cursor-pointer rounded-full h-24 w-24 border hover:border-blue-800" />
-        <img src="/images/avatar3.png" data-avatar="/images/avatar3.png" class="cursor-pointer rounded-full h-24 w-24 border hover:border-blue-800" />
+  <div id="avatar-modal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50" aria-modal="true" role="dialog">
+    <div class="bg-white text-blue-900 p-6 rounded-2xl shadow-lg max-w-md mx-auto w-11/12">
+      <h3 class="text-lg font-bold text-center mb-4">Select an avatar</h3>
+
+      <!-- preview = picsum, saved url = data-avatar (même url) -->
+      <div class="grid grid-cols-3 gap-6 justify-items-center mb-4">
+        <button type="button" data-avatar="https://picsum.photos/id/237/400/400" class="group">
+          <img src="https://picsum.photos/id/237/200/200" class="h-24 w-24 rounded-full border-2 border-transparent group-hover:border-blue-700 transition" alt="Avatar 1" />
+        </button>
+
+        <button type="button" data-avatar="https://picsum.photos/id/238/400/400" class="group">
+          <img src="https://picsum.photos/id/238/200/200" class="h-24 w-24 rounded-full border-2 border-transparent group-hover:border-blue-700 transition" alt="Avatar 2" />
+        </button>
+
+        <button type="button" data-avatar="https://picsum.photos/id/239/400/400" class="group">
+          <img src="https://picsum.photos/id/239/200/200" class="h-24 w-24 rounded-full border-2 border-transparent group-hover:border-blue-700 transition" alt="Avatar 3" />
+        </button>
       </div>
-      <div class="text-center mt-4">
+
+      <div class="text-center">
         <button id="close-modal-btn" class="button-danger">Cancel</button>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-burgundy text-white py-6 mt-10">
-    <div class="container mx-auto text-center">
-      <p>&copy; 2024 The Golden Market. All rights reserved.</p>
-    </div>
+  <footer class="bg-blue-900 text-white py-6 text-center">
+    <p>&copy; 2024 The Golden Market. All rights reserved.</p>
   </footer>
-
 </body>
+
 </html>
