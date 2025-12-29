@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <span>Bids: <span class="font-semibold">${bidsCount}</span></span>
           </div>
 
-          <a href="/listings/single/index.html?id=${encodeURIComponent(listing.id)}"
+          <a href="/listings/single/?id=${encodeURIComponent(listing.id)}"
             class="button-primary w-full block text-center mt-2">
             View listing
           </a>

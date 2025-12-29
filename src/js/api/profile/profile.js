@@ -52,10 +52,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         </p>
 
         <div class="mt-4 flex gap-2">
-          <a href="/listings/single/index.html?id=${encodeURIComponent(listing.id)}"
+          <a href="/listings/single/?id=${encodeURIComponent(listing.id)}"
              class="button-light w-full text-center">View</a>
 
-          <a href="/listings/edit/index.html?id=${encodeURIComponent(listing.id)}"
+          <a href="/listings/edit/?id=${encodeURIComponent(listing.id)}"
              class="button-secondary w-full text-center">Edit</a>
 
           <button type="button"
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
 
         <div class="mt-4">
-          <a href="/listings/single/index.html?id=${encodeURIComponent(listing.id)}"
+          <a href="/listings/single/?id=${encodeURIComponent(listing.id)}"
              class="button-primary w-full block text-center">
             View listing
           </a>
